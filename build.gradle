@@ -23,6 +23,13 @@ dependencies {
 	implementation ('org.docx4j:docx4j:6.1.0'){
 		exclude group: "org.slf4j" , module: "slf4j-log4j12"
 	}
+	// // https://mvnrepository.com/artifact/xalan/xalan
+	implementation "javax.xml.bind:jaxb-api:2.3.1"
+	// // https://mvnrepository.com/artifact/org.glassfish.jaxb/jaxb-runtime
+	// implementation group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '3.0.0-M4'
+	
+	// implementation('javax.activation:activation:1.1.1')
+
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
