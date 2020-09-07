@@ -20,15 +20,30 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation ('org.docx4j:docx4j:6.1.0'){
-		exclude group: "org.slf4j" , module: "slf4j-log4j12"
+	implementation ('org.docx4j:docx4j-core:11.1.8'){
+		// exclude group: "org.slf4j" , module: "slf4j-log4j12"
 	}
-	// // https://mvnrepository.com/artifact/xalan/xalan
-	implementation "javax.xml.bind:jaxb-api:2.3.1"
-	// // https://mvnrepository.com/artifact/org.glassfish.jaxb/jaxb-runtime
-	// implementation group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '3.0.0-M4'
+
+	implementation 'org.docx4j:docx4j-JAXB-ReferenceImpl:11.1.8'
+
+	// // https://mvnrepository.com/artifact/xerces/xercesImpl
+	// compileOnly group: 'xerces', name: 'xercesImpl', version: '2.6.2-jaxb-1.0.6'
+
+	// // compileOnly "jakarta.xml.bind:jakarta.xml.bind-api:2.3.3"
 	
-	// implementation('javax.activation:activation:1.1.1')
+	
+	// // // https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
+	// // compileOnly group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
+
+	// // // https://mvnrepository.com/artifact/org.glassfish.jaxb/jaxb-core
+	// // compileOnly group: 'org.glassfish.jaxb', name: 'jaxb-core', version: '2.3.0.1'
+
+
+	// runtimeOnly "com.sun.xml.bind:jaxb-impl:2.3.3"
+	
+	// // // https://mvnrepository.com/artifact/org.glassfish.jaxb/jaxb-runtime
+	// // runtimeOnly group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '2.3.3'
+
 
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
