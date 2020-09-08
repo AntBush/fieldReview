@@ -4,18 +4,14 @@ import java.io.File;
 import java.util.List;
 
 import org.docx4j.model.structure.SectionWrapper;
-import org.docx4j.openpackaging.exceptions.InvalidFormatException;
 import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 import org.docx4j.openpackaging.parts.WordprocessingML.HeaderPart;
 import org.docx4j.openpackaging.parts.WordprocessingML.MainDocumentPart;
 import org.docx4j.relationships.Relationship;
-import org.docx4j.wml.Hdr;
 import org.docx4j.wml.HdrFtrRef;
 import org.docx4j.wml.HeaderReference;
 import org.docx4j.wml.ObjectFactory;
-import org.docx4j.wml.P;
 import org.docx4j.wml.SectPr;
-import org.docx4j.wml.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,6 +31,7 @@ public class DocxBuilder  {
 			logger.info("Error here?");
 			MainDocumentPart mdp = wordMLPackage.getMainDocumentPart();
 			HeaderPart hdrPart = new HeaderPart();
+			mdp.setContents(BodyWithTableBuilder.createIt());
 			
 			hdrPart.setContents(HeaderBuilder.createIt());
 			Relationship rel = mdp.addTargetPart(hdrPart);
@@ -48,6 +45,7 @@ public class DocxBuilder  {
 		}
 	}
 
+	//This is taken from the "Create Header and Footer" sample
 	private void createHeaderReference(WordprocessingMLPackage mlPackage, Relationship relationship){
 		
 		List<SectionWrapper> sections = mlPackage.getDocumentModel().getSections();
@@ -59,7 +57,7 @@ public class DocxBuilder  {
 			mlPackage.getMainDocumentPart().addObject(sectPr);
 			sections.get(sections.size() - 1).setSectPr(sectPr);
 		}
-
+		
 		HeaderReference headerReference = objectFactory.createHeaderReference();
 		headerReference.setId(relationship.getId());
 		headerReference.setType(HdrFtrRef.DEFAULT);
