@@ -4553,15 +4553,16 @@ public class BodyWithTableBuilder {
             rfonts.setAscii("Arial");
             rfonts.setHAnsi("Arial");
             rfonts.setCs("Arial");
-            Color color56 = wmlObjectFactory.createColor();
-            rpr.setColor(color56);
-            color56.setVal("365F91");
-            color56.setThemeColor(org.docx4j.wml.STThemeColor.ACCENT_1);
-            color56.setThemeShade("BF");
+            Color color = wmlObjectFactory.createColor();
+            rpr.setColor(color);
+            color.setVal("365F91");
+            color.setThemeColor(org.docx4j.wml.STThemeColor.ACCENT_1);
+            color.setThemeShade("BF");
 
 
             text.setValue(item);
             r.getContent().add(textWrapped);
+            r.setRPr(rpr);
             p.getContent().add(r);
             baseTc.getContent().add(p);
 
