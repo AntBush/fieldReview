@@ -6,6 +6,7 @@ import org.docx4j.wml.Body;
 import org.docx4j.wml.BooleanDefaultTrue;
 import org.docx4j.wml.CTBorder;
 import org.docx4j.wml.CTColumns;
+import org.docx4j.wml.CTDocGrid;
 import org.docx4j.wml.CTHeight;
 import org.docx4j.wml.CTLanguage;
 import org.docx4j.wml.CTTabStop;
@@ -4459,6 +4460,9 @@ public class BodyWithTableBuilder {
         SectPr sectpr = wmlObjectFactory.createSectPr();
         body.setSectPr(sectpr);
         // Create object for pgSz
+        // CTDocGrid grid = wmlObjectFactory.createCTDocGrid();
+        // grid.setLinePitch(BigInteger.valueOf(360));
+        // sectpr.setDocGrid(grid);
         SectPr.PgSz sectprpgsz = wmlObjectFactory.createSectPrPgSz();
         sectpr.setPgSz(sectprpgsz);
         sectprpgsz.setW(BigInteger.valueOf(12240));
@@ -4467,9 +4471,9 @@ public class BodyWithTableBuilder {
         SectPr.PgMar sectprpgmar = wmlObjectFactory.createSectPrPgMar();
         sectpr.setPgMar(sectprpgmar);
         sectprpgmar.setTop(BigInteger.valueOf(1440));
-        sectprpgmar.setRight(BigInteger.valueOf(1440));
+        sectprpgmar.setRight(BigInteger.valueOf(1797));
         sectprpgmar.setBottom(BigInteger.valueOf(1440));
-        sectprpgmar.setLeft(BigInteger.valueOf(1440));
+        sectprpgmar.setLeft(BigInteger.valueOf(2892));
         sectprpgmar.setHeader(BigInteger.valueOf(720));
         sectprpgmar.setFooter(BigInteger.valueOf(720));
         sectprpgmar.setGutter(BigInteger.valueOf(0));

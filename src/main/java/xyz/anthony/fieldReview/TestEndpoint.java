@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class TestEndpoint {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @GetMapping(value="/test")
+    @GetMapping(value="/")
     public String getMethodName() {
         
         logger.info("Instantiating doc class");

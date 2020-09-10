@@ -29,12 +29,17 @@ public class DocxBuilder  {
 			logger.info("Creating Word package");
 			wordMLPackage = WordprocessingMLPackage.createPackage();
 			logger.info("Error here?");
-			MainDocumentPart mdp = wordMLPackage.getMainDocumentPart();
 			HeaderPart hdrPart = new HeaderPart();
+			MainDocumentPart mdp = wordMLPackage.getMainDocumentPart();
+			
 			mdp.setContents(BodyWithTableBuilder.createIt());
 			
+			List<SectionWrapper> sections = wordMLPackage.getDocumentModel().getSections();
 			hdrPart.setContents(HeaderBuilder.createIt());
 			Relationship rel = mdp.addTargetPart(hdrPart);
+			for(SectionWrapper section : sections){
+				logger.info("Section is: " + section.getSectPr().toString());
+			}
 			createHeaderReference(wordMLPackage, rel);
 			File exportFile = new File("welcome.docx");
 			wordMLPackage.save(exportFile);
@@ -52,17 +57,24 @@ public class DocxBuilder  {
 		   
 		SectPr sectPr = sections.get(sections.size() - 1).getSectPr();
 		// There is always a section wrapper, but it might not contain a sectPr
-		if (sectPr==null ) {
+		if (sectPr==null) {
+			logger.info("Section pointer is null apparently");
 			sectPr = objectFactory.createSectPr();
 			mlPackage.getMainDocumentPart().addObject(sectPr);
 			sections.get(sections.size() - 1).setSectPr(sectPr);
 		}
+		logger.info("Section pointer is: " + sectPr.toString());
 		
 		HeaderReference headerReference = objectFactory.createHeaderReference();
+		logger.info("Header relationship ID: " + relationship.getId());
 		headerReference.setId(relationship.getId());
 		headerReference.setType(HdrFtrRef.DEFAULT);
 		sectPr.getEGHdrFtrReferences().add(headerReference);// add header or
+		sectPr.getEGHdrFtrReferences().add(headerReference);
+		sectPr.getEGHdrFtrReferences().remove(0);
+		logger.info("Header references: "  + sectPr.getEGHdrFtrReferences().size());
 		// footer references
+		
 	}
 
 }
