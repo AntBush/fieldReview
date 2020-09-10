@@ -1,6 +1,8 @@
 package xyz.anthony.fieldReview;
 
 import java.math.BigInteger;
+import java.util.List;
+
 import javax.xml.bind.JAXBElement;
 
 import org.docx4j.openpackaging.parts.WordprocessingML.StyleDefinitionsPart;
@@ -52,7 +54,7 @@ import org.docx4j.wml.Tr;
 import org.docx4j.wml.TrPr;
 
 public class BodyWithTableBuilder {
-    public static Document createIt() {
+    public static Document createIt(List<String> numberedListItems) {
 
         org.docx4j.wml.ObjectFactory wmlObjectFactory = new org.docx4j.wml.ObjectFactory();
         PPrBase.Spacing pprBaseSpacing = wmlObjectFactory.createPPrBaseSpacing();
@@ -1707,6 +1709,8 @@ public class BodyWithTableBuilder {
         color55.setThemeColor(org.docx4j.wml.STThemeColor.ACCENT_1);
         color55.setThemeShade("BF");
         // Create object for p
+        addNumberedList(numberedListItems, tc4);
+        /*
         P p27 = wmlObjectFactory.createP();
         tc4.getContent().add(p27);
         // Create object for r
@@ -2739,6 +2743,7 @@ public class BodyWithTableBuilder {
         PPrBase.NumPr.NumId pprbasenumprnumid10 = wmlObjectFactory.createPPrBaseNumPrNumId();
         pprbasenumpr10.setNumId(pprbasenumprnumid10);
         pprbasenumprnumid10.setVal(BigInteger.valueOf(43));
+        */
         // Create object for p
         P p46 = wmlObjectFactory.createP();
         tc4.getContent().add(p46);
@@ -4534,4 +4539,49 @@ public class BodyWithTableBuilder {
 
         return document;
     }
+
+    private static void addNumberedList(List<String> items, Tc baseTc){
+        org.docx4j.wml.ObjectFactory wmlObjectFactory = new org.docx4j.wml.ObjectFactory();
+        for(String item : items){
+            P p = wmlObjectFactory.createP();
+            R r = wmlObjectFactory.createR();
+            Text text = wmlObjectFactory.createText();
+            JAXBElement<org.docx4j.wml.Text> textWrapped = wmlObjectFactory.createRT(text);
+            RPr rpr = wmlObjectFactory.createRPr();
+            RFonts rfonts = wmlObjectFactory.createRFonts();
+            rpr.setRFonts(rfonts);
+            rfonts.setAscii("Arial");
+            rfonts.setHAnsi("Arial");
+            rfonts.setCs("Arial");
+            Color color56 = wmlObjectFactory.createColor();
+            rpr.setColor(color56);
+            color56.setVal("365F91");
+            color56.setThemeColor(org.docx4j.wml.STThemeColor.ACCENT_1);
+            color56.setThemeShade("BF");
+
+
+            text.setValue(item);
+            r.getContent().add(textWrapped);
+            p.getContent().add(r);
+            baseTc.getContent().add(p);
+
+            PPr ppr = wmlObjectFactory.createPPr();
+            // ParaRPr pararpr = wmlObjectFactory.createParaRPr();
+            p.setPPr(ppr);
+            // ppr.setRPr(pararpr);
+            PPrBase.PStyle pprbasepstyle = wmlObjectFactory.createPPrBasePStyle();
+            pprbasepstyle.setVal("ListParagraph");
+
+            PPrBase.NumPr pprbasenumpr = wmlObjectFactory.createPPrBaseNumPr();
+            ppr.setNumPr(pprbasenumpr);
+            PPrBase.NumPr.Ilvl pprbasenumprilvl = wmlObjectFactory.createPPrBaseNumPrIlvl();
+            pprbasenumpr.setIlvl(pprbasenumprilvl);
+            pprbasenumprilvl.setVal(BigInteger.valueOf(0));
+
+            PPrBase.NumPr.NumId pprbasenumprnumid = wmlObjectFactory.createPPrBaseNumPrNumId();
+            pprbasenumpr.setNumId(pprbasenumprnumid);
+            pprbasenumprnumid.setVal(BigInteger.valueOf(43));
+        }
+    }
 }
+

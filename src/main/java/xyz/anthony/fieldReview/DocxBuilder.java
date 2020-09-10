@@ -2,6 +2,7 @@ package xyz.anthony.fieldReview;
 
 import java.io.File;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.docx4j.model.structure.SectionWrapper;
@@ -28,7 +29,7 @@ public class DocxBuilder  {
 	private WordprocessingMLPackage wordMLPackage;
 	private ObjectFactory objectFactory = new ObjectFactory();
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-
+    private List<String> numberedList = new ArrayList<String>();
 
 	public void doShit(){
 		try{
@@ -37,8 +38,10 @@ public class DocxBuilder  {
 			logger.info("Error here?");
 			HeaderPart hdrPart = new HeaderPart();
 			MainDocumentPart mdp = wordMLPackage.getMainDocumentPart();
-			
-			mdp.setContents(BodyWithTableBuilder.createIt());
+            numberedList.add("Precast one");
+            numberedList.add("Item two");
+            numberedList.add("Item Three");
+			mdp.setContents(BodyWithTableBuilder.createIt(numberedList));
 			// StyleDefinitionsPart asdf = objectFactory.style
 			DocDefaults docDefault = objectFactory.createDocDefaults();
 			PPrDefault pprDefault = objectFactory.createDocDefaultsPPrDefault();
