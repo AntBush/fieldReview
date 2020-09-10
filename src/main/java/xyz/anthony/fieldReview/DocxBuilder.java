@@ -1,17 +1,23 @@
 package xyz.anthony.fieldReview;
 
 import java.io.File;
+import java.math.BigInteger;
 import java.util.List;
 
 import org.docx4j.model.structure.SectionWrapper;
 import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 import org.docx4j.openpackaging.parts.WordprocessingML.HeaderPart;
 import org.docx4j.openpackaging.parts.WordprocessingML.MainDocumentPart;
+import org.docx4j.openpackaging.parts.WordprocessingML.StyleDefinitionsPart;
 import org.docx4j.relationships.Relationship;
+import org.docx4j.wml.DocDefaults;
 import org.docx4j.wml.HdrFtrRef;
 import org.docx4j.wml.HeaderReference;
 import org.docx4j.wml.ObjectFactory;
+import org.docx4j.wml.PPr;
+import org.docx4j.wml.PPrBase;
 import org.docx4j.wml.SectPr;
+import org.docx4j.wml.DocDefaults.PPrDefault;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,6 +39,15 @@ public class DocxBuilder  {
 			MainDocumentPart mdp = wordMLPackage.getMainDocumentPart();
 			
 			mdp.setContents(BodyWithTableBuilder.createIt());
+			// StyleDefinitionsPart asdf = objectFactory.style
+			DocDefaults docDefault = objectFactory.createDocDefaults();
+			PPrDefault pprDefault = objectFactory.createDocDefaultsPPrDefault();
+			PPr ppr = objectFactory.createPPr();
+			PPrBase.Spacing pprBaseSpacing = objectFactory.createPPrBaseSpacing();
+			pprBaseSpacing.setAfter(BigInteger.valueOf(0));
+			ppr.setSpacing(pprBaseSpacing);
+			pprDefault.setPPr(ppr);
+			docDefault.setPPrDefault(pprDefault);
 			
 			List<SectionWrapper> sections = wordMLPackage.getDocumentModel().getSections();
 			hdrPart.setContents(HeaderBuilder.createIt());
@@ -41,6 +56,7 @@ public class DocxBuilder  {
 				logger.info("Section is: " + section.getSectPr().toString());
 			}
 			createHeaderReference(wordMLPackage, rel);
+			mdp.getStyleDefinitionsPart().getContents().setDocDefaults(docDefault);
 			File exportFile = new File("welcome.docx");
 			wordMLPackage.save(exportFile);
 			

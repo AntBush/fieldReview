@@ -2,8 +2,11 @@ package xyz.anthony.fieldReview;
 
 import java.math.BigInteger;
 import javax.xml.bind.JAXBElement;
+
+import org.docx4j.openpackaging.parts.WordprocessingML.StyleDefinitionsPart;
 import org.docx4j.wml.Body;
 import org.docx4j.wml.BooleanDefaultTrue;
+import org.docx4j.wml.Br;
 import org.docx4j.wml.CTBorder;
 import org.docx4j.wml.CTColumns;
 import org.docx4j.wml.CTDocGrid;
@@ -28,6 +31,7 @@ import org.docx4j.wml.R;
 import org.docx4j.wml.R.Tab;
 import org.docx4j.wml.RFonts;
 import org.docx4j.wml.RPr;
+import org.docx4j.wml.STBrType;
 import org.docx4j.wml.SectPr;
 import org.docx4j.wml.SectPr.PgMar;
 import org.docx4j.wml.SectPr.PgSz;
@@ -51,6 +55,9 @@ public class BodyWithTableBuilder {
     public static Document createIt() {
 
         org.docx4j.wml.ObjectFactory wmlObjectFactory = new org.docx4j.wml.ObjectFactory();
+        PPrBase.Spacing pprBaseSpacing = wmlObjectFactory.createPPrBaseSpacing();
+        pprBaseSpacing.setAfter(BigInteger.valueOf(0));
+
 
         Document document = wmlObjectFactory.createDocument();
         // Create object for body
@@ -65,6 +72,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr = wmlObjectFactory.createParaRPr();
         ppr.setRPr(pararpr);
+        ppr.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts = wmlObjectFactory.createRFonts();
         pararpr.setRFonts(rfonts);
@@ -187,6 +195,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr2 = wmlObjectFactory.createParaRPr();
         ppr2.setRPr(pararpr2);
+        ppr2.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts6 = wmlObjectFactory.createRFonts();
         pararpr2.setRFonts(rfonts6);
@@ -278,6 +287,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr3 = wmlObjectFactory.createParaRPr();
         ppr3.setRPr(pararpr3);
+        ppr3.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts8 = wmlObjectFactory.createRFonts();
         pararpr3.setRFonts(rfonts8);
@@ -379,6 +389,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr4 = wmlObjectFactory.createParaRPr();
         ppr4.setRPr(pararpr4);
+        ppr4.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts9 = wmlObjectFactory.createRFonts();
         pararpr4.setRFonts(rfonts9);
@@ -476,6 +487,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr5 = wmlObjectFactory.createParaRPr();
         ppr5.setRPr(pararpr5);
+        ppr5.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts13 = wmlObjectFactory.createRFonts();
         pararpr5.setRFonts(rfonts13);
@@ -503,6 +515,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr6 = wmlObjectFactory.createParaRPr();
         ppr6.setRPr(pararpr6);
+        ppr6.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts14 = wmlObjectFactory.createRFonts();
         pararpr6.setRFonts(rfonts14);
@@ -612,6 +625,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr7 = wmlObjectFactory.createParaRPr();
         ppr7.setRPr(pararpr7);
+        ppr7.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts18 = wmlObjectFactory.createRFonts();
         pararpr7.setRFonts(rfonts18);
@@ -635,6 +649,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr8 = wmlObjectFactory.createParaRPr();
         ppr8.setRPr(pararpr8);
+        ppr8.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts19 = wmlObjectFactory.createRFonts();
         pararpr8.setRFonts(rfonts19);
@@ -740,6 +755,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr9 = wmlObjectFactory.createParaRPr();
         ppr9.setRPr(pararpr9);
+        ppr9.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts23 = wmlObjectFactory.createRFonts();
         pararpr9.setRFonts(rfonts23);
@@ -763,6 +779,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr10 = wmlObjectFactory.createParaRPr();
         ppr10.setRPr(pararpr10);
+        ppr10.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts24 = wmlObjectFactory.createRFonts();
         pararpr10.setRFonts(rfonts24);
@@ -814,6 +831,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr11 = wmlObjectFactory.createParaRPr();
         ppr11.setRPr(pararpr11);
+        ppr11.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts26 = wmlObjectFactory.createRFonts();
         pararpr11.setRFonts(rfonts26);
@@ -844,6 +862,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr12 = wmlObjectFactory.createParaRPr();
         ppr12.setRPr(pararpr12);
+        ppr12.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts27 = wmlObjectFactory.createRFonts();
         pararpr12.setRFonts(rfonts27);
@@ -899,6 +918,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr13 = wmlObjectFactory.createParaRPr();
         ppr13.setRPr(pararpr13);
+        ppr13.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts29 = wmlObjectFactory.createRFonts();
         pararpr13.setRFonts(rfonts29);
@@ -926,6 +946,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr14 = wmlObjectFactory.createParaRPr();
         ppr14.setRPr(pararpr14);
+        ppr14.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts30 = wmlObjectFactory.createRFonts();
         pararpr14.setRFonts(rfonts30);
@@ -996,6 +1017,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr15 = wmlObjectFactory.createParaRPr();
         ppr15.setRPr(pararpr15);
+        ppr15.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts31 = wmlObjectFactory.createRFonts();
         pararpr15.setRFonts(rfonts31);
@@ -1128,6 +1150,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr17 = wmlObjectFactory.createParaRPr();
         ppr17.setRPr(pararpr17);
+        ppr17.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts36 = wmlObjectFactory.createRFonts();
         pararpr17.setRFonts(rfonts36);
@@ -1233,6 +1256,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr18 = wmlObjectFactory.createParaRPr();
         ppr18.setRPr(pararpr18);
+        ppr18.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts40 = wmlObjectFactory.createRFonts();
         pararpr18.setRFonts(rfonts40);
@@ -1256,6 +1280,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr19 = wmlObjectFactory.createParaRPr();
         ppr19.setRPr(pararpr19);
+        ppr19.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts41 = wmlObjectFactory.createRFonts();
         pararpr19.setRFonts(rfonts41);
@@ -1307,6 +1332,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr20 = wmlObjectFactory.createParaRPr();
         ppr20.setRPr(pararpr20);
+        ppr20.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts43 = wmlObjectFactory.createRFonts();
         pararpr20.setRFonts(rfonts43);
@@ -1330,6 +1356,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr21 = wmlObjectFactory.createParaRPr();
         ppr21.setRPr(pararpr21);
+        ppr21.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts44 = wmlObjectFactory.createRFonts();
         pararpr21.setRFonts(rfonts44);
@@ -1382,6 +1409,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr22 = wmlObjectFactory.createParaRPr();
         ppr22.setRPr(pararpr22);
+        ppr22.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts46 = wmlObjectFactory.createRFonts();
         pararpr22.setRFonts(rfonts46);
@@ -1434,6 +1462,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr23 = wmlObjectFactory.createParaRPr();
         ppr23.setRPr(pararpr23);
+        ppr23.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts48 = wmlObjectFactory.createRFonts();
         pararpr23.setRFonts(rfonts48);
@@ -1512,6 +1541,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr24 = wmlObjectFactory.createParaRPr();
         ppr24.setRPr(pararpr24);
+        ppr24.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts49 = wmlObjectFactory.createRFonts();
         pararpr24.setRFonts(rfonts49);
@@ -1632,6 +1662,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr25 = wmlObjectFactory.createParaRPr();
         ppr25.setRPr(pararpr25);
+        ppr25.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts54 = wmlObjectFactory.createRFonts();
         pararpr25.setRFonts(rfonts54);
@@ -1656,6 +1687,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr26 = wmlObjectFactory.createParaRPr();
         ppr26.setRPr(pararpr26);
+        ppr26.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts55 = wmlObjectFactory.createRFonts();
         pararpr26.setRFonts(rfonts55);
@@ -1684,8 +1716,7 @@ public class BodyWithTableBuilder {
         Text text31 = wmlObjectFactory.createText();
         JAXBElement<org.docx4j.wml.Text> textWrapped31 = wmlObjectFactory.createRT(text31);
         r31.getContent().add(textWrapped31);
-        text31.setValue(
-                "Precast panels installed and in progress from L3 to L5; North, West and East areas of the project.");
+        text31.setValue("Precast panels installed and in progress from L3 to L5; North, West and East areas of the project.");
         // Create object for rPr
         RPr rpr31 = wmlObjectFactory.createRPr();
         r31.setRPr(rpr31);
@@ -1710,6 +1741,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr27 = wmlObjectFactory.createParaRPr();
         ppr27.setRPr(pararpr27);
+        ppr27.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts57 = wmlObjectFactory.createRFonts();
         pararpr27.setRFonts(rfonts57);
@@ -1735,6 +1767,7 @@ public class BodyWithTableBuilder {
         // Create object for numPr
         PPrBase.NumPr pprbasenumpr = wmlObjectFactory.createPPrBaseNumPr();
         ppr27.setNumPr(pprbasenumpr);
+        ppr27.setSpacing(pprBaseSpacing);
         // Create object for ilvl
         PPrBase.NumPr.Ilvl pprbasenumprilvl = wmlObjectFactory.createPPrBaseNumPrIlvl();
         pprbasenumpr.setIlvl(pprbasenumprilvl);
@@ -1752,6 +1785,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr28 = wmlObjectFactory.createParaRPr();
         ppr28.setRPr(pararpr28);
+        ppr28.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts58 = wmlObjectFactory.createRFonts();
         pararpr28.setRFonts(rfonts58);
@@ -1809,6 +1843,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr29 = wmlObjectFactory.createParaRPr();
         ppr29.setRPr(pararpr29);
+        ppr29.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts60 = wmlObjectFactory.createRFonts();
         pararpr29.setRFonts(rfonts60);
@@ -1851,6 +1886,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr30 = wmlObjectFactory.createParaRPr();
         ppr30.setRPr(pararpr30);
+        ppr30.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts61 = wmlObjectFactory.createRFonts();
         pararpr30.setRFonts(rfonts61);
@@ -1909,6 +1945,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr31 = wmlObjectFactory.createParaRPr();
         ppr31.setRPr(pararpr31);
+        ppr31.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts63 = wmlObjectFactory.createRFonts();
         pararpr31.setRFonts(rfonts63);
@@ -1934,6 +1971,7 @@ public class BodyWithTableBuilder {
         // Create object for numPr
         PPrBase.NumPr pprbasenumpr3 = wmlObjectFactory.createPPrBaseNumPr();
         ppr31.setNumPr(pprbasenumpr3);
+        ppr31.setSpacing(pprBaseSpacing);
         // Create object for ilvl
         PPrBase.NumPr.Ilvl pprbasenumprilvl3 = wmlObjectFactory.createPPrBaseNumPrIlvl();
         pprbasenumpr3.setIlvl(pprbasenumprilvl3);
@@ -1951,6 +1989,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr32 = wmlObjectFactory.createParaRPr();
         ppr32.setRPr(pararpr32);
+        ppr32.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts64 = wmlObjectFactory.createRFonts();
         pararpr32.setRFonts(rfonts64);
@@ -2061,6 +2100,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr33 = wmlObjectFactory.createParaRPr();
         ppr33.setRPr(pararpr33);
+        ppr33.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts68 = wmlObjectFactory.createRFonts();
         pararpr33.setRFonts(rfonts68);
@@ -2100,6 +2140,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr34 = wmlObjectFactory.createParaRPr();
         ppr34.setRPr(pararpr34);
+        ppr34.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts69 = wmlObjectFactory.createRFonts();
         pararpr34.setRFonts(rfonts69);
@@ -2154,6 +2195,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr35 = wmlObjectFactory.createParaRPr();
         ppr35.setRPr(pararpr35);
+        ppr35.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts71 = wmlObjectFactory.createRFonts();
         pararpr35.setRFonts(rfonts71);
@@ -2211,6 +2253,7 @@ public class BodyWithTableBuilder {
         // Create object for pStyle
         PPrBase.PStyle pprbasepstyle16 = wmlObjectFactory.createPPrBasePStyle();
         ppr36.setPStyle(pprbasepstyle16);
+        ppr36.setSpacing(pprBaseSpacing);
         pprbasepstyle16.setVal("ListParagraph");
         // Create object for p
         P p37 = wmlObjectFactory.createP();
@@ -2247,6 +2290,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr37 = wmlObjectFactory.createParaRPr();
         ppr37.setRPr(pararpr37);
+        ppr37.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts74 = wmlObjectFactory.createRFonts();
         pararpr37.setRFonts(rfonts74);
@@ -2286,6 +2330,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr38 = wmlObjectFactory.createParaRPr();
         ppr38.setRPr(pararpr38);
+        ppr38.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts75 = wmlObjectFactory.createRFonts();
         pararpr38.setRFonts(rfonts75);
@@ -2392,6 +2437,7 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         ParaRPr pararpr39 = wmlObjectFactory.createParaRPr();
         ppr39.setRPr(pararpr39);
+        ppr39.setSpacing(pprBaseSpacing);
         // Create object for rFonts
         RFonts rfonts79 = wmlObjectFactory.createRFonts();
         pararpr39.setRFonts(rfonts79);
@@ -4133,6 +4179,9 @@ public class BodyWithTableBuilder {
         // Create object for rPr
         RPr rpr80 = wmlObjectFactory.createRPr();
         r80.setRPr(rpr80);
+        Br pageBreak = wmlObjectFactory.createBr();
+        pageBreak.setType(STBrType.PAGE);
+        r80.getContent().add(pageBreak);
         // Create object for rFonts
         RFonts rfonts129 = wmlObjectFactory.createRFonts();
         rpr80.setRFonts(rfonts129);
