@@ -54,7 +54,7 @@ import org.docx4j.wml.Tr;
 import org.docx4j.wml.TrPr;
 
 public class BodyWithTableBuilder {
-    public static Document createIt(List<String> numberedListItems) {
+    public static Document createIt(FieldReviewData reviewData) {
 
         org.docx4j.wml.ObjectFactory wmlObjectFactory = new org.docx4j.wml.ObjectFactory();
         PPrBase.Spacing pprBaseSpacing = wmlObjectFactory.createPPrBaseSpacing();
@@ -112,6 +112,7 @@ public class BodyWithTableBuilder {
         rfonts2.setAscii("Arial");
         rfonts2.setHAnsi("Arial");
         rfonts2.setCs("Arial");
+        rpr.setB(wmlObjectFactory.createBooleanDefaultTrue());
         // Create object for color
         Color color = wmlObjectFactory.createColor();
         rpr.setColor(color);
@@ -147,7 +148,8 @@ public class BodyWithTableBuilder {
         Text text3 = wmlObjectFactory.createText();
         JAXBElement<org.docx4j.wml.Text> textWrapped3 = wmlObjectFactory.createRT(text3);
         r3.getContent().add(textWrapped3);
-        text3.setValue("# ");
+        //TODO: Field Review Report Number variable
+        text3.setValue(reviewData.getReportNumber());
         text3.setSpace("preserve");
         // Create object for rPr
         RPr rpr3 = wmlObjectFactory.createRPr();
@@ -159,8 +161,8 @@ public class BodyWithTableBuilder {
         rfonts4.setHAnsi("Arial");
         rfonts4.setCs("Arial");
         // Create object for b
-        BooleanDefaultTrue booleandefaulttrue = wmlObjectFactory.createBooleanDefaultTrue();
-        rpr3.setB(booleandefaulttrue);
+        // BooleanDefaultTrue booleandefaulttrue = wmlObjectFactory.createBooleanDefaultTrue();
+        // rpr3.setB(booleandefaulttrue);
         // Create object for color
         Color color3 = wmlObjectFactory.createColor();
         rpr3.setColor(color3);
@@ -168,7 +170,7 @@ public class BodyWithTableBuilder {
         color3.setThemeColor(org.docx4j.wml.STThemeColor.TEXT_2);
         // Create object for r
         R r4 = wmlObjectFactory.createR();
-        p2.getContent().add(r4);
+        // p2.getContent().add(r4);
         // Create object for t (wrapped in JAXBElement)
         Text text4 = wmlObjectFactory.createText();
         JAXBElement<org.docx4j.wml.Text> textWrapped4 = wmlObjectFactory.createRT(text4);
@@ -184,8 +186,8 @@ public class BodyWithTableBuilder {
         rfonts5.setHAnsi("Arial");
         rfonts5.setCs("Arial");
         // Create object for b
-        BooleanDefaultTrue booleandefaulttrue2 = wmlObjectFactory.createBooleanDefaultTrue();
-        rpr4.setB(booleandefaulttrue2);
+        // BooleanDefaultTrue booleandefaulttrue2 = wmlObjectFactory.createBooleanDefaultTrue();
+        // rpr4.setB(booleandefaulttrue2);
         // Create object for color
         Color color4 = wmlObjectFactory.createColor();
         rpr4.setColor(color4);
@@ -259,6 +261,7 @@ public class BodyWithTableBuilder {
         rfonts7.setAscii("Arial");
         rfonts7.setHAnsi("Arial");
         rfonts7.setCs("Arial");
+        rpr5.setB(wmlObjectFactory.createBooleanDefaultTrue());
         // Create object for color
         Color color6 = wmlObjectFactory.createColor();
         rpr5.setColor(color6);
@@ -271,13 +274,14 @@ public class BodyWithTableBuilder {
         Text text6 = wmlObjectFactory.createText();
         JAXBElement<org.docx4j.wml.Text> textWrapped6 = wmlObjectFactory.createRT(text6);
         r6.getContent().add(textWrapped6);
-        text6.setValue("H1979548");
+        //TODO: Add variable value for Common Element Number
+        text6.setValue(reviewData.getCommonElementNumber());
         // Create object for rPr
         RPr rpr6 = wmlObjectFactory.createRPr();
         r6.setRPr(rpr6);
         // Create object for b
-        BooleanDefaultTrue booleandefaulttrue4 = wmlObjectFactory.createBooleanDefaultTrue();
-        rpr6.setB(booleandefaulttrue4);
+        // BooleanDefaultTrue booleandefaulttrue4 = wmlObjectFactory.createBooleanDefaultTrue();
+        // rpr6.setB(booleandefaulttrue4);
         // Create object for color
         Color color7 = wmlObjectFactory.createColor();
         rpr6.setColor(color7);
@@ -430,6 +434,7 @@ public class BodyWithTableBuilder {
         rfonts10.setAscii("Arial");
         rfonts10.setHAnsi("Arial");
         rfonts10.setCs("Arial");
+        rpr7.setB(wmlObjectFactory.createBooleanDefaultTrue());
         // Create object for color
         Color color10 = wmlObjectFactory.createColor();
         rpr7.setColor(color10);
@@ -465,7 +470,7 @@ public class BodyWithTableBuilder {
         Text text9 = wmlObjectFactory.createText();
         JAXBElement<org.docx4j.wml.Text> textWrapped9 = wmlObjectFactory.createRT(text9);
         r9.getContent().add(textWrapped9);
-        text9.setValue("FRC 4915");
+        text9.setValue(reviewData.getFileNumber());
         // Create object for rPr
         RPr rpr9 = wmlObjectFactory.createRPr();
         r9.setRPr(rpr9);
@@ -476,8 +481,8 @@ public class BodyWithTableBuilder {
         rfonts12.setHAnsi("Arial");
         rfonts12.setCs("Arial");
         // Create object for b
-        BooleanDefaultTrue booleandefaulttrue7 = wmlObjectFactory.createBooleanDefaultTrue();
-        rpr9.setB(booleandefaulttrue7);
+        // BooleanDefaultTrue booleandefaulttrue7 = wmlObjectFactory.createBooleanDefaultTrue(); remove bold for FRC 4915
+        // rpr9.setB(booleandefaulttrue7);
         // Create object for color
         Color color12 = wmlObjectFactory.createColor();
         rpr9.setColor(color12);
@@ -603,7 +608,7 @@ public class BodyWithTableBuilder {
         Text text12 = wmlObjectFactory.createText();
         JAXBElement<org.docx4j.wml.Text> textWrapped12 = wmlObjectFactory.createRT(text12);
         r12.getContent().add(textWrapped12);
-        text12.setValue("August 27, 2020");
+        text12.setValue(reviewData.getDate());
         // Create object for rPr
         RPr rpr12 = wmlObjectFactory.createRPr();
         r12.setRPr(rpr12);
@@ -733,7 +738,8 @@ public class BodyWithTableBuilder {
         Text text15 = wmlObjectFactory.createText();
         JAXBElement<org.docx4j.wml.Text> textWrapped15 = wmlObjectFactory.createRT(text15);
         r15.getContent().add(textWrapped15);
-        text15.setValue("281- 289 Avenue Road, Toronto, Ontario");
+        //TODO: Add variable Address
+        text15.setValue(reviewData.getProjectAddress());
         // Create object for rPr
         RPr rpr15 = wmlObjectFactory.createRPr();
         r15.setRPr(rpr15);
@@ -806,6 +812,8 @@ public class BodyWithTableBuilder {
         Text text16 = wmlObjectFactory.createText();
         JAXBElement<org.docx4j.wml.Text> textWrapped16 = wmlObjectFactory.createRT(text16);
         r16.getContent().add(textWrapped16);
+        //TODO: Add location variability
+        addToP(p11, reviewData.getLocation()); //TextToAdd will be replaced with variable 
         text16.setValue("Location:");
         // Create object for rPr
         RPr rpr16 = wmlObjectFactory.createRPr();
@@ -893,6 +901,8 @@ public class BodyWithTableBuilder {
         Text text17 = wmlObjectFactory.createText();
         JAXBElement<org.docx4j.wml.Text> textWrapped17 = wmlObjectFactory.createRT(text17);
         r17.getContent().add(textWrapped17);
+        //TODO: Add Reference Dwgs variability
+        addToP(p13, reviewData.getReferenceDwgs());
         text17.setValue("Reference Dwgs:");
         // Create object for rPr
         RPr rpr17 = wmlObjectFactory.createRPr();
@@ -1105,7 +1115,8 @@ public class BodyWithTableBuilder {
         Text text20 = wmlObjectFactory.createText();
         JAXBElement<org.docx4j.wml.Text> textWrapped20 = wmlObjectFactory.createRT(text20);
         r20.getContent().add(textWrapped20);
-        text20.setValue("The Davies Condominiums");
+        //TODO: Add variable Project name
+        text20.setValue(reviewData.getProjectName());
         // Create object for rPr
         RPr rpr20 = wmlObjectFactory.createRPr();
         r20.setRPr(rpr20);
@@ -1234,7 +1245,8 @@ public class BodyWithTableBuilder {
         Text text23 = wmlObjectFactory.createText();
         JAXBElement<org.docx4j.wml.Text> textWrapped23 = wmlObjectFactory.createRT(text23);
         r23.getContent().add(textWrapped23);
-        text23.setValue("Davies Condominiums");
+        //TODO: Add variability to Builder name
+        text23.setValue(reviewData.getBuilder());
         // Create object for rPr
         RPr rpr23 = wmlObjectFactory.createRPr();
         r23.setRPr(rpr23);
@@ -1307,6 +1319,8 @@ public class BodyWithTableBuilder {
         Text text24 = wmlObjectFactory.createText();
         JAXBElement<org.docx4j.wml.Text> textWrapped24 = wmlObjectFactory.createRT(text24);
         r24.getContent().add(textWrapped24);
+        //TODO: Add variability to weather conditions
+        addToP(p20, reviewData.getWeatherCondition()); //change textToAdd with variable
         text24.setValue("Weather Condition:");
         // Create object for rPr
         RPr rpr24 = wmlObjectFactory.createRPr();
@@ -1439,7 +1453,8 @@ public class BodyWithTableBuilder {
         Text text26 = wmlObjectFactory.createText();
         JAXBElement<org.docx4j.wml.Text> textWrapped26 = wmlObjectFactory.createRT(text26);
         r26.getContent().add(textWrapped26);
-        text26.setValue("Above Grade Construction Progress");
+        //TODO: Add variability to Inspection Category
+        text26.setValue(reviewData.getInspectionCategory());
         // Create object for rPr
         RPr rpr26 = wmlObjectFactory.createRPr();
         r26.setRPr(rpr26);
@@ -1710,7 +1725,7 @@ public class BodyWithTableBuilder {
         color55.setThemeColor(org.docx4j.wml.STThemeColor.ACCENT_1);
         color55.setThemeShade("BF");
         // Create object for p
-        addNumberedList(numberedListItems, tc4);
+        addNumberedList(reviewData.getNumberedList(), tc4);
         // Create object for p
         P p46 = wmlObjectFactory.createP();
         tc4.getContent().add(p46);
@@ -3507,6 +3522,11 @@ public class BodyWithTableBuilder {
         return document;
     }
 
+    /**
+     * Helper method to created a numbered list in the word doc iteratively
+     * @param items A List of type String that denotes the items (in order) that are to be listed
+     * @param baseTc the Tc that will be used as the parent for the child items that will be added.
+     */
     private static void addNumberedList(List<String> items, Tc baseTc){
         org.docx4j.wml.ObjectFactory wmlObjectFactory = new org.docx4j.wml.ObjectFactory();
         for(String item : items){
@@ -3542,6 +3562,7 @@ public class BodyWithTableBuilder {
             p.setPPr(ppr);
             ppr.setRPr(pararpr);
             pararpr.setColor(color);
+            pararpr.setB(wmlObjectFactory.createBooleanDefaultTrue());
             PPrBase.PStyle pprbasepstyle = wmlObjectFactory.createPPrBasePStyle();
             pprbasepstyle.setVal("ListParagraph");
 
@@ -3555,6 +3576,50 @@ public class BodyWithTableBuilder {
             pprbasenumpr.setNumId(pprbasenumprnumid);
             pprbasenumprnumid.setVal(BigInteger.valueOf(43));
         }
+    }
+
+
+    /**
+     * Private method to help add blue-coloured text to a P
+     * @param baseP - The P object you'd like to add text to
+     * @param textToAdd - The string of text you'd like to add to the P
+     */
+    private static void addToP(P baseP, String textToAdd){
+        org.docx4j.wml.ObjectFactory wmlObjectFactory = new org.docx4j.wml.ObjectFactory();
+        R r6 = wmlObjectFactory.createR();
+        Text text6 = wmlObjectFactory.createText();
+        JAXBElement<org.docx4j.wml.Text> textWrapped6 = wmlObjectFactory.createRT(text6);
+        r6.getContent().add(textWrapped6);
+        if (textToAdd == null){
+            textToAdd = " ";
+        }else {
+            //I want a starting space between the previous run and this text
+            textToAdd = " " + textToAdd;
+        }
+
+        text6.setValue(textToAdd);
+        // Create object for rPr which stands for "Run Property", defines the properties for the run
+        RPr rpr6 = wmlObjectFactory.createRPr();
+        r6.setRPr(rpr6);
+
+        Color color7 = wmlObjectFactory.createColor();
+        rpr6.setColor(color7);
+        color7.setVal("1F497D");
+        color7.setThemeColor(org.docx4j.wml.STThemeColor.TEXT_2);
+        // Create object for pPr which stands for Paragraph Property, defines the properties for the paragraph
+        PPr ppr3 = wmlObjectFactory.createPPr();
+        // baseP.setPPr(ppr3);
+        // Create object for rPr
+        ParaRPr pararpr3 = wmlObjectFactory.createParaRPr();
+        ppr3.setRPr(pararpr3);
+        
+        RFonts rfonts8 = wmlObjectFactory.createRFonts();
+        pararpr3.setRFonts(rfonts8);
+        rpr6.setRFonts(rfonts8);
+        rfonts8.setAscii("Arial");
+        rfonts8.setHAnsi("Arial");
+        rfonts8.setCs("Arial");
+        baseP.getContent().add(r6);
     }
 }
 

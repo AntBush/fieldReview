@@ -20,7 +20,7 @@ public class TestEndpoint {
         logger.info("Instantiating doc class");
         DocxBuilder doc = new DocxBuilder();
 
-        doc.doShit();
+        doc.buildDoc();
         
         return "Test";
     }
