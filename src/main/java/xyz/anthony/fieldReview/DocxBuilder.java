@@ -22,7 +22,9 @@ import org.docx4j.wml.DocDefaults.PPrDefault;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @NoArgsConstructor
 public class DocxBuilder  {
@@ -30,6 +32,32 @@ public class DocxBuilder  {
 	private ObjectFactory objectFactory = new ObjectFactory();
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
     private List<String> numberedList = new ArrayList<String>();
+    private List<String> dateList = new ArrayList<String>();
+    
+    @Getter
+    @Setter
+    private String fileNumber;
+    @Getter
+    @Setter
+    private String date;
+    @Getter
+    @Setter
+    private String location;
+    @Getter
+    @Setter
+    private String referenceDwgs;
+    @Getter
+    @Setter
+    private String projectName;
+    @Getter
+    @Setter
+    private String builder;
+    @Getter
+    @Setter
+    private String weatherCondition;
+    @Getter
+    @Setter
+    private String inspectionCategory;
 
 	public void doShit(){
 		try{
