@@ -1,0 +1,68 @@
+:host .docxFormLayout{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "fieldReviewReports empty1"
+    "commonElementNo empty2"
+    "fileNo projectName"
+    "date builder"
+    "projectAddress weatherCondition"
+    "location inspectionCategory"
+    "referenceDwgs empty3"
+    "datesVisited empty4"
+    "inspectionNotes empty5";
+}
+
+:host .datesVisited {
+    grid-area: datesVisited;
+}
+
+:host .inspectionNotes {
+    grid-area: inspectionNotes;
+}
+
+:host .referenceDwgs {
+    grid-area: referenceDwgs;
+}
+:host .inspectionCategory {
+    grid-area: inspectionCategory;
+}
+
+:host .location {
+    grid-area: location;
+}
+:host .projectAddress {
+    grid-area: projectAddress;
+}
+
+:host .weatherCondition {
+    grid-area: weatherCondition;
+}
+
+:host .fieldReviewReports {
+    grid-area: fieldReviewReports;
+}
+
+:host .commonElementNo {
+    grid-area: commonElementNo;
+}
+:host .fileNo{
+    grid-area: fileNo;
+}
+
+:host .projectName {
+    grid-area: projectName;
+}
+
+:host .date {
+    grid-area: date;
+}
+
+:host .bulder {
+    grid-area: builder;
+}
+
+:host .empty5 {
+    grid-area: empty5;
+}

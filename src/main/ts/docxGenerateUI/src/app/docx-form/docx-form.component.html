@@ -1,0 +1,94 @@
+<div>
+    <form [formGroup]='docxForm' class="docxFormLayout">
+        <div class="fieldReviewReports">
+        <label>
+            File Review Reports:
+            <input type="text" id="fieldReviewReports" formControlName="fieldReviewReports">
+        </label>
+    </div>
+    <div class="commonElementNo">
+        <label>
+            Common Element Number:
+            <input type="text" id="commonElementNo" formControlName="commonElementNo">
+        </label>
+    </div>
+    <div class="fileNo">
+        <label>
+            File No.:
+            <input type="text" id="fileNumber" formControlName="fileNo">
+        </label>
+    </div>
+    <div class="date">    
+        <label>
+            Date of Document: 
+            <input type="date" id="dateGeneration" formControlName="date">
+        </label>
+    </div>
+    <div class="projectAddress">
+        <label>
+            Project Address:
+            <input type="text" id="projectAddress" formControlName="projectAddress" >
+        </label>
+    </div>
+    <div class="location">
+        <label>
+            Location:
+            <input type="text" id="location" formControlName="location">
+        </label>
+    </div>
+    <div class="referenceDwgs">
+        <label>
+            Reference Dwgs:
+            <input type="text" id="referenceDwgs" formControlName="referenceDwgs">
+        </label>
+    </div>
+    <div class="projectName">
+        <label>
+            Project Name: 
+            <input type="text" id="projectName" formControlName="projectName">
+        </label>
+    </div>
+    <div class="builder">
+        <label>
+            Builder: 
+            <input type="text" id="builder" formControlName="builder" >
+        </label>
+    </div>
+    <div class="weatherCondition">
+        <label>
+            Weather Condition: 
+            <input type="text" id="weatherCondition" formControlName="weatherCondition" >
+        </label>
+    </div>
+    <div class="inspectionCategory">
+        <label>
+            Inspection Category: 
+            <input type="text" id="inspectionCategory" formControlName="inspectionCategory">
+        </label>
+    </div>
+    <div formArrayName="datesVisited" class="datesVisited">
+        
+        <div *ngFor="let date of datesVisited.controls; let i = index">
+            <label>
+                Date Visited: 
+                <input type="date" [formControlName]="i">
+            </label>
+        </div>
+        <button (click)="addDateVisited()">Add Date Visited</button>
+    </div>
+    <div formArrayName="inspectionNotes" class="inspectionNotes">
+        <div *ngFor="let inspectionNote of inspectionNotes.controls; let i=index">
+            <label>
+                Inspection Notes: 
+                <input type="text" [formControlName]="i">
+            </label>
+        </div>
+        <button (click)="addInspectionNotes()">Add Inspection Note</button>
+    </div>
+    <button (click)="logIt()"  class="empty5">SubmitIGuess</button>
+    </form>
+<p>
+    <!-- Value: {{fileNumber.value}} -->
+</p>
+
+</div>
