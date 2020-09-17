@@ -53,8 +53,6 @@ public class DocxBuilder  {
             HeaderPart hdrPart = new HeaderPart();
             FooterPart ftrPart = new FooterPart();
             MainDocumentPart mdp = wordMLPackage.getMainDocumentPart();
-            reviewData.addToNumberedList("listItem");
-            reviewData.addToNumberedList("ListItem 2");
             mdp.setContents(BodyWithTableBuilder.createIt(reviewData));
 			DocDefaults docDefault = objectFactory.createDocDefaults();
 			PPrDefault pprDefault = objectFactory.createDocDefaultsPPrDefault();

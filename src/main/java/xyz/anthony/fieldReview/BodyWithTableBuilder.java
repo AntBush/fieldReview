@@ -1,6 +1,10 @@
 package xyz.anthony.fieldReview;
 
 import java.math.BigInteger;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.xml.bind.JAXBElement;
@@ -1605,7 +1609,7 @@ public class BodyWithTableBuilder {
         JAXBElement<org.docx4j.wml.Text> textWrapped28 = wmlObjectFactory.createRT(text28);
         r28.getContent().add(textWrapped28);
         //TODO: Add date list functionality
-        text28.setValue(" July 13 and August 11, 2020 ");
+        text28.setValue(dateList(reviewData.getDatesVisited()));
         text28.setSpace("preserve");
         // Create object for rPr
         RPr rpr28 = wmlObjectFactory.createRPr();
@@ -3576,6 +3580,33 @@ public class BodyWithTableBuilder {
             pprbasenumpr.setNumId(pprbasenumprnumid);
             pprbasenumprnumid.setVal(BigInteger.valueOf(43));
         }
+    }
+
+    private static String dateList(List<String> dateList){
+        String FormatedDates = " ";
+
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy'-'MM'-'dd");
+        SimpleDateFormat dateToString = new SimpleDateFormat("MMM d");
+        SimpleDateFormat dateToStringWithYear = new SimpleDateFormat("MMM d, yyyy");
+
+
+        for (String stringDate : dateList.subList(0, dateList.size()-1)){
+            try{
+                Date date = dateFormatter.parse(stringDate);
+                FormatedDates += dateToString.format(date) + ", ";
+
+            }catch(ParseException e){
+                
+            }
+        }
+        try{
+            Date date = dateFormatter.parse(dateList.get(dateList.size()-1));
+            FormatedDates += "and " + dateToStringWithYear.format(date) + " ";
+        }catch(ParseException e ){
+
+        }
+
+        return FormatedDates;
     }
 
 

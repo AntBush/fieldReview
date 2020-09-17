@@ -183,7 +183,7 @@ function DocxFormComponent_div_47_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "label");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, " Date Visited: ");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](3, "input", 30);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](3, "input", 29);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
@@ -195,7 +195,7 @@ function DocxFormComponent_div_51_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "label");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, " Inspection Notes: ");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](3, "input", 31);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](3, "input", 30);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
@@ -225,7 +225,6 @@ class DocxFormComponent {
             inspectionNotes: this.fb.array([
                 this.fb.control('')
             ]),
-            files: [''],
         });
     }
     ngOnInit() {
@@ -262,7 +261,7 @@ class DocxFormComponent {
     }
 }
 DocxFormComponent.ɵfac = function DocxFormComponent_Factory(t) { return new (t || DocxFormComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"])); };
-DocxFormComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: DocxFormComponent, selectors: [["app-docx-form"]], decls: 61, vars: 3, consts: [[1, "docxFormLayout", 3, "formGroup"], [1, "fieldReviewReports"], ["type", "text", "id", "fieldReviewReports", "formControlName", "reportNumber", "tabindex", "1"], [1, "commonElementNumber"], ["type", "text", "id", "commonElementNumber", "formControlName", "commonElementNumber", "tabindex", "3"], [1, "fileNumber"], ["type", "text", "id", "fileNumber", "formControlName", "fileNumber", "tabindex", "4"], [1, "date"], ["type", "date", "id", "dateGeneration", "formControlName", "date", "tabindex", "6"], [1, "projectAddress"], ["type", "text", "id", "projectAddress", "formControlName", "projectAddress", "tabindex", "7"], [1, "location"], ["type", "text", "id", "location", "formControlName", "location", "tabindex", "9"], [1, "referenceDwgs"], ["type", "text", "id", "referenceDwgs", "formControlName", "referenceDwgs", "tabindex", "11"], [1, "projectName"], ["type", "text", "id", "projectName", "formControlName", "projectName", "tabindex", "5"], [1, "builder"], ["type", "text", "id", "builder", "formControlName", "builder", "tabindex", "2"], [1, "weatherCondition"], ["type", "text", "id", "weatherCondition", "formControlName", "weatherCondition", "tabindex", "8"], [1, "inspectionCategory"], ["type", "text", "id", "inspectionCategory", "formControlName", "inspectionCategory", "tabindex", "10"], ["formArrayName", "datesVisited", 1, "datesVisited"], [4, "ngFor", "ngForOf"], [3, "click"], ["formArrayName", "inspectionNotes", 1, "inspectionNotes"], [1, "fileUploads"], ["type", "file", "id", "files", "formControlName", "files", "accept", "image/x-png,image/gif,image/jpeg", "multiple", ""], [1, "empty5", 3, "click"], ["type", "date", 3, "formControlName"], ["type", "text", 3, "formControlName"]], template: function DocxFormComponent_Template(rf, ctx) { if (rf & 1) {
+DocxFormComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: DocxFormComponent, selectors: [["app-docx-form"]], decls: 60, vars: 3, consts: [[1, "docxFormLayout", 3, "formGroup"], [1, "fieldReviewReports"], ["type", "text", "id", "fieldReviewReports", "formControlName", "reportNumber", "tabindex", "1"], [1, "commonElementNumber"], ["type", "text", "id", "commonElementNumber", "formControlName", "commonElementNumber", "tabindex", "3"], [1, "fileNumber"], ["type", "text", "id", "fileNumber", "formControlName", "fileNumber", "tabindex", "4"], [1, "date"], ["type", "date", "id", "dateGeneration", "formControlName", "date", "tabindex", "6"], [1, "projectAddress"], ["type", "text", "id", "projectAddress", "formControlName", "projectAddress", "tabindex", "7"], [1, "location"], ["type", "text", "id", "location", "formControlName", "location", "tabindex", "9"], [1, "referenceDwgs"], ["type", "text", "id", "referenceDwgs", "formControlName", "referenceDwgs", "tabindex", "11"], [1, "projectName"], ["type", "text", "id", "projectName", "formControlName", "projectName", "tabindex", "5"], [1, "builder"], ["type", "text", "id", "builder", "formControlName", "builder", "tabindex", "2"], [1, "weatherCondition"], ["type", "text", "id", "weatherCondition", "formControlName", "weatherCondition", "tabindex", "8"], [1, "inspectionCategory"], ["type", "text", "id", "inspectionCategory", "formControlName", "inspectionCategory", "tabindex", "10"], ["formArrayName", "datesVisited", 1, "datesVisited"], [4, "ngFor", "ngForOf"], [3, "click"], ["formArrayName", "inspectionNotes", 1, "inspectionNotes"], [1, "fileUploads"], [1, "empty5", 3, "click"], ["type", "date", 3, "formControlName"], ["type", "text", 3, "formControlName"]], template: function DocxFormComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "form", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 1);
@@ -348,15 +347,14 @@ DocxFormComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](54, "div", 27);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](55, "label");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](56, " Image Upload: ");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](57, "input", 28);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](58, "button", 29);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function DocxFormComponent_Template_button_click_58_listener() { return ctx.sendHttpRequest(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](59, "Submit");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](57, "button", 28);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function DocxFormComponent_Template_button_click_57_listener() { return ctx.sendHttpRequest(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](58, "Submit");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](60, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](59, "p");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     } if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
