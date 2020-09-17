@@ -1,6 +1,6 @@
 <div>
     <form [formGroup]='docxForm' class="docxFormLayout">
-        <div class="fieldReviewReports">
+    <div class="fieldReviewReports">
         <label>
             Field Review Report Number:
             <input type="text" id="fieldReviewReports" formControlName="reportNumber" tabindex="1">
@@ -85,7 +85,13 @@
         </div>
         <button (click)="addInspectionNotes()">Add Inspection Note</button>
     </div>
-    <button (click)="sendHttpRequest()"  class="empty5">SubmitIGuess</button>
+    <div class="fileUploads">
+        <label>
+            Image Upload:     
+            <input type="file" id="files" formControlName="files" accept="image/x-png,image/gif,image/jpeg" multiple>
+        </label>
+    </div>
+    <button (click)="sendHttpRequest()"  class="empty5">Submit</button>
     </form>
 <p>
     <!-- Value: {{fileNumber.value}} -->

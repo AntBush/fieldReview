@@ -11,7 +11,8 @@
     "location inspectionCategory"
     "referenceDwgs empty3"
     "datesVisited empty4"
-    "inspectionNotes empty5";
+    "inspectionNotes empty5"
+    "fileUploads empty6";
 }
 
 :host .datesVisited {
@@ -65,4 +66,8 @@
 
 :host .empty5 {
     grid-area: empty5;
+}
+
+:host .fileUploads {
+    grid-area: fileUploads;
 }

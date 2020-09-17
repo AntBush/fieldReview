@@ -27,7 +27,8 @@ export class DocxFormComponent implements OnInit {
         ]),
         inspectionNotes: this.fb.array([
             this.fb.control('')
-        ])
+        ]),
+        files: [''],
     });
    
 

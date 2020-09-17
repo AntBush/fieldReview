@@ -108,14 +108,11 @@ public class DocxBuilder  {
 			pprDefault.setPPr(ppr);
 			docDefault.setPPrDefault(pprDefault);
 			
-			List<SectionWrapper> sections = wordMLPackage.getDocumentModel().getSections();
+			// List<SectionWrapper> sections = wordMLPackage.getDocumentModel().getSections();
             hdrPart.setContents(HeaderBuilder.createIt());
             ftrPart.setContents(FooterBuilder.createIt());
             Relationship ftrRel = mdp.addTargetPart(ftrPart);
 			Relationship hdrRel = mdp.addTargetPart(hdrPart);
-			for(SectionWrapper section : sections){
-				logger.info("Section is: " + section.getSectPr().toString());
-			}
             createHeaderReference(wordMLPackage, hdrRel);
             createFooterReference(wordMLPackage, ftrRel);
 			mdp.getStyleDefinitionsPart().getContents().setDocDefaults(docDefault);
