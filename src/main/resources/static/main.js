@@ -172,7 +172,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DocxFormComponent", function() { return DocxFormComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
+
 
 
 
@@ -202,12 +204,13 @@ function DocxFormComponent_div_51_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("formControlName", i_r5);
 } }
 class DocxFormComponent {
-    constructor(fb) {
+    constructor(fb, http) {
         this.fb = fb;
+        this.http = http;
         this.docxForm = this.fb.group({
-            fieldReviewReports: [''],
-            commonElementNo: [''],
-            fileNo: [''],
+            reportNumber: [''],
+            commonElementNumber: [''],
+            fileNumber: [''],
             date: [''],
             projectAddress: [''],
             location: [''],
@@ -226,9 +229,22 @@ class DocxFormComponent {
     }
     ngOnInit() {
     }
+    sendHttpRequest() {
+        this.http.post("/docBuild", this.docxForm.value, { responseType: 'arraybuffer' }).subscribe(response => {
+            this.downLoadFile(response, "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+        });
+    }
     logIt() {
-        console.log(this.datesVisited.value);
+        //   console.log(this.datesVisited.value);
         console.log(this.docxForm.value);
+    }
+    downLoadFile(data, type) {
+        let blob = new Blob([data], { type: type });
+        let url = window.URL.createObjectURL(blob);
+        let pwa = window.open(url);
+        if (!pwa || pwa.closed || typeof pwa.closed == 'undefined') {
+            alert('Please disable your Pop-up blocker and try again.');
+        }
     }
     get datesVisited() {
         return this.docxForm.get('datesVisited');
@@ -244,13 +260,13 @@ class DocxFormComponent {
         this.inspectionNotes.push(this.fb.control(''));
     }
 }
-DocxFormComponent.ɵfac = function DocxFormComponent_Factory(t) { return new (t || DocxFormComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"])); };
-DocxFormComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: DocxFormComponent, selectors: [["app-docx-form"]], decls: 57, vars: 3, consts: [[1, "docxFormLayout", 3, "formGroup"], [1, "fieldReviewReports"], ["type", "text", "id", "fieldReviewReports", "formControlName", "fieldReviewReports"], [1, "commonElementNo"], ["type", "text", "id", "commonElementNo", "formControlName", "commonElementNo"], [1, "fileNo"], ["type", "text", "id", "fileNumber", "formControlName", "fileNo"], [1, "date"], ["type", "date", "id", "dateGeneration", "formControlName", "date"], [1, "projectAddress"], ["type", "text", "id", "projectAddress", "formControlName", "projectAddress"], [1, "location"], ["type", "text", "id", "location", "formControlName", "location"], [1, "referenceDwgs"], ["type", "text", "id", "referenceDwgs", "formControlName", "referenceDwgs"], [1, "projectName"], ["type", "text", "id", "projectName", "formControlName", "projectName"], [1, "builder"], ["type", "text", "id", "builder", "formControlName", "builder"], [1, "weatherCondition"], ["type", "text", "id", "weatherCondition", "formControlName", "weatherCondition"], [1, "inspectionCategory"], ["type", "text", "id", "inspectionCategory", "formControlName", "inspectionCategory"], ["formArrayName", "datesVisited", 1, "datesVisited"], [4, "ngFor", "ngForOf"], [3, "click"], ["formArrayName", "inspectionNotes", 1, "inspectionNotes"], [1, "empty5", 3, "click"], ["type", "date", 3, "formControlName"], ["type", "text", 3, "formControlName"]], template: function DocxFormComponent_Template(rf, ctx) { if (rf & 1) {
+DocxFormComponent.ɵfac = function DocxFormComponent_Factory(t) { return new (t || DocxFormComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"])); };
+DocxFormComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: DocxFormComponent, selectors: [["app-docx-form"]], decls: 57, vars: 3, consts: [[1, "docxFormLayout", 3, "formGroup"], [1, "fieldReviewReports"], ["type", "text", "id", "fieldReviewReports", "formControlName", "reportNumber", "tabindex", "1"], [1, "commonElementNumber"], ["type", "text", "id", "commonElementNumber", "formControlName", "commonElementNumber", "tabindex", "3"], [1, "fileNumber"], ["type", "text", "id", "fileNumber", "formControlName", "fileNumber", "tabindex", "4"], [1, "date"], ["type", "date", "id", "dateGeneration", "formControlName", "date", "tabindex", "6"], [1, "projectAddress"], ["type", "text", "id", "projectAddress", "formControlName", "projectAddress", "tabindex", "7"], [1, "location"], ["type", "text", "id", "location", "formControlName", "location", "tabindex", "9"], [1, "referenceDwgs"], ["type", "text", "id", "referenceDwgs", "formControlName", "referenceDwgs", "tabindex", "11"], [1, "projectName"], ["type", "text", "id", "projectName", "formControlName", "projectName", "tabindex", "5"], [1, "builder"], ["type", "text", "id", "builder", "formControlName", "builder", "tabindex", "2"], [1, "weatherCondition"], ["type", "text", "id", "weatherCondition", "formControlName", "weatherCondition", "tabindex", "8"], [1, "inspectionCategory"], ["type", "text", "id", "inspectionCategory", "formControlName", "inspectionCategory", "tabindex", "10"], ["formArrayName", "datesVisited", 1, "datesVisited"], [4, "ngFor", "ngForOf"], [3, "click"], ["formArrayName", "inspectionNotes", 1, "inspectionNotes"], [1, "empty5", 3, "click"], ["type", "date", 3, "formControlName"], ["type", "text", 3, "formControlName"]], template: function DocxFormComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "form", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "label");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4, " File Review Reports: ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4, " Field Review Report Number: ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](5, "input", 2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -329,7 +345,7 @@ DocxFormComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](54, "button", 27);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function DocxFormComponent_Template_button_click_54_listener() { return ctx.logIt(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function DocxFormComponent_Template_button_click_54_listener() { return ctx.sendHttpRequest(); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](55, "SubmitIGuess");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -342,7 +358,7 @@ DocxFormComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.datesVisited.controls);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.inspectionNotes.controls);
-    } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["ɵangular_packages_forms_forms_y"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormGroupDirective"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControlName"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormArrayName"], _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgForOf"]], styles: ["[_nghost-%COMP%]   .docxFormLayout[_ngcontent-%COMP%]{\n    display: grid;\n    grid-template-columns: auto auto;\n    grid-template-rows: auto;\n    grid-template-areas: \n    \"fieldReviewReports empty1\"\n    \"commonElementNo empty2\"\n    \"fileNo projectName\"\n    \"date builder\"\n    \"projectAddress weatherCondition\"\n    \"location inspectionCategory\"\n    \"referenceDwgs empty3\"\n    \"datesVisited empty4\"\n    \"inspectionNotes empty5\";\n}\n\n[_nghost-%COMP%]   .datesVisited[_ngcontent-%COMP%] {\n    grid-area: datesVisited;\n}\n\n[_nghost-%COMP%]   .inspectionNotes[_ngcontent-%COMP%] {\n    grid-area: inspectionNotes;\n}\n\n[_nghost-%COMP%]   .referenceDwgs[_ngcontent-%COMP%] {\n    grid-area: referenceDwgs;\n}\n\n[_nghost-%COMP%]   .inspectionCategory[_ngcontent-%COMP%] {\n    grid-area: inspectionCategory;\n}\n\n[_nghost-%COMP%]   .location[_ngcontent-%COMP%] {\n    grid-area: location;\n}\n\n[_nghost-%COMP%]   .projectAddress[_ngcontent-%COMP%] {\n    grid-area: projectAddress;\n}\n\n[_nghost-%COMP%]   .weatherCondition[_ngcontent-%COMP%] {\n    grid-area: weatherCondition;\n}\n\n[_nghost-%COMP%]   .fieldReviewReports[_ngcontent-%COMP%] {\n    grid-area: fieldReviewReports;\n}\n\n[_nghost-%COMP%]   .commonElementNo[_ngcontent-%COMP%] {\n    grid-area: commonElementNo;\n}\n\n[_nghost-%COMP%]   .fileNo[_ngcontent-%COMP%]{\n    grid-area: fileNo;\n}\n\n[_nghost-%COMP%]   .projectName[_ngcontent-%COMP%] {\n    grid-area: projectName;\n}\n\n[_nghost-%COMP%]   .date[_ngcontent-%COMP%] {\n    grid-area: date;\n}\n\n[_nghost-%COMP%]   .bulder[_ngcontent-%COMP%] {\n    grid-area: builder;\n}\n\n[_nghost-%COMP%]   .empty5[_ngcontent-%COMP%] {\n    grid-area: empty5;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZG9jeC1mb3JtL2RvY3gtZm9ybS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksYUFBYTtJQUNiLGdDQUFnQztJQUNoQyx3QkFBd0I7SUFDeEI7Ozs7Ozs7Ozs0QkFTd0I7QUFDNUI7O0FBRUE7SUFDSSx1QkFBdUI7QUFDM0I7O0FBRUE7SUFDSSwwQkFBMEI7QUFDOUI7O0FBRUE7SUFDSSx3QkFBd0I7QUFDNUI7O0FBQ0E7SUFDSSw2QkFBNkI7QUFDakM7O0FBRUE7SUFDSSxtQkFBbUI7QUFDdkI7O0FBQ0E7SUFDSSx5QkFBeUI7QUFDN0I7O0FBRUE7SUFDSSwyQkFBMkI7QUFDL0I7O0FBRUE7SUFDSSw2QkFBNkI7QUFDakM7O0FBRUE7SUFDSSwwQkFBMEI7QUFDOUI7O0FBQ0E7SUFDSSxpQkFBaUI7QUFDckI7O0FBRUE7SUFDSSxzQkFBc0I7QUFDMUI7O0FBRUE7SUFDSSxlQUFlO0FBQ25COztBQUVBO0lBQ0ksa0JBQWtCO0FBQ3RCOztBQUVBO0lBQ0ksaUJBQWlCO0FBQ3JCIiwiZmlsZSI6InNyYy9hcHAvZG9jeC1mb3JtL2RvY3gtZm9ybS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3QgLmRvY3hGb3JtTGF5b3V0e1xuICAgIGRpc3BsYXk6IGdyaWQ7XG4gICAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiBhdXRvIGF1dG87XG4gICAgZ3JpZC10ZW1wbGF0ZS1yb3dzOiBhdXRvO1xuICAgIGdyaWQtdGVtcGxhdGUtYXJlYXM6IFxuICAgIFwiZmllbGRSZXZpZXdSZXBvcnRzIGVtcHR5MVwiXG4gICAgXCJjb21tb25FbGVtZW50Tm8gZW1wdHkyXCJcbiAgICBcImZpbGVObyBwcm9qZWN0TmFtZVwiXG4gICAgXCJkYXRlIGJ1aWxkZXJcIlxuICAgIFwicHJvamVjdEFkZHJlc3Mgd2VhdGhlckNvbmRpdGlvblwiXG4gICAgXCJsb2NhdGlvbiBpbnNwZWN0aW9uQ2F0ZWdvcnlcIlxuICAgIFwicmVmZXJlbmNlRHdncyBlbXB0eTNcIlxuICAgIFwiZGF0ZXNWaXNpdGVkIGVtcHR5NFwiXG4gICAgXCJpbnNwZWN0aW9uTm90ZXMgZW1wdHk1XCI7XG59XG5cbjpob3N0IC5kYXRlc1Zpc2l0ZWQge1xuICAgIGdyaWQtYXJlYTogZGF0ZXNWaXNpdGVkO1xufVxuXG46aG9zdCAuaW5zcGVjdGlvbk5vdGVzIHtcbiAgICBncmlkLWFyZWE6IGluc3BlY3Rpb25Ob3Rlcztcbn1cblxuOmhvc3QgLnJlZmVyZW5jZUR3Z3Mge1xuICAgIGdyaWQtYXJlYTogcmVmZXJlbmNlRHdncztcbn1cbjpob3N0IC5pbnNwZWN0aW9uQ2F0ZWdvcnkge1xuICAgIGdyaWQtYXJlYTogaW5zcGVjdGlvbkNhdGVnb3J5O1xufVxuXG46aG9zdCAubG9jYXRpb24ge1xuICAgIGdyaWQtYXJlYTogbG9jYXRpb247XG59XG46aG9zdCAucHJvamVjdEFkZHJlc3Mge1xuICAgIGdyaWQtYXJlYTogcHJvamVjdEFkZHJlc3M7XG59XG5cbjpob3N0IC53ZWF0aGVyQ29uZGl0aW9uIHtcbiAgICBncmlkLWFyZWE6IHdlYXRoZXJDb25kaXRpb247XG59XG5cbjpob3N0IC5maWVsZFJldmlld1JlcG9ydHMge1xuICAgIGdyaWQtYXJlYTogZmllbGRSZXZpZXdSZXBvcnRzO1xufVxuXG46aG9zdCAuY29tbW9uRWxlbWVudE5vIHtcbiAgICBncmlkLWFyZWE6IGNvbW1vbkVsZW1lbnRObztcbn1cbjpob3N0IC5maWxlTm97XG4gICAgZ3JpZC1hcmVhOiBmaWxlTm87XG59XG5cbjpob3N0IC5wcm9qZWN0TmFtZSB7XG4gICAgZ3JpZC1hcmVhOiBwcm9qZWN0TmFtZTtcbn1cblxuOmhvc3QgLmRhdGUge1xuICAgIGdyaWQtYXJlYTogZGF0ZTtcbn1cblxuOmhvc3QgLmJ1bGRlciB7XG4gICAgZ3JpZC1hcmVhOiBidWlsZGVyO1xufVxuXG46aG9zdCAuZW1wdHk1IHtcbiAgICBncmlkLWFyZWE6IGVtcHR5NTtcbn0iXX0= */"] });
+    } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["ɵangular_packages_forms_forms_y"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormGroupDirective"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControlName"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormArrayName"], _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgForOf"]], styles: ["[_nghost-%COMP%]   .docxFormLayout[_ngcontent-%COMP%]{\n    display: grid;\n    grid-template-columns: auto auto;\n    grid-template-rows: auto;\n    grid-template-areas: \n    \"fieldReviewReports empty1\"\n    \"commonElementNumber empty2\"\n    \"fileNumber projectName\"\n    \"date builder\"\n    \"projectAddress weatherCondition\"\n    \"location inspectionCategory\"\n    \"referenceDwgs empty3\"\n    \"datesVisited empty4\"\n    \"inspectionNotes empty5\";\n}\n\n[_nghost-%COMP%]   .datesVisited[_ngcontent-%COMP%] {\n    grid-area: datesVisited;\n}\n\n[_nghost-%COMP%]   .inspectionNotes[_ngcontent-%COMP%] {\n    grid-area: inspectionNotes;\n}\n\n[_nghost-%COMP%]   .referenceDwgs[_ngcontent-%COMP%] {\n    grid-area: referenceDwgs;\n}\n\n[_nghost-%COMP%]   .inspectionCategory[_ngcontent-%COMP%] {\n    grid-area: inspectionCategory;\n}\n\n[_nghost-%COMP%]   .location[_ngcontent-%COMP%] {\n    grid-area: location;\n}\n\n[_nghost-%COMP%]   .projectAddress[_ngcontent-%COMP%] {\n    grid-area: projectAddress;\n}\n\n[_nghost-%COMP%]   .weatherCondition[_ngcontent-%COMP%] {\n    grid-area: weatherCondition;\n}\n\n[_nghost-%COMP%]   .fieldReviewReports[_ngcontent-%COMP%] {\n    grid-area: fieldReviewReports;\n}\n\n[_nghost-%COMP%]   .commonElementNumber[_ngcontent-%COMP%] {\n    grid-area: commonElementNumber;\n}\n\n[_nghost-%COMP%]   .fileNumber[_ngcontent-%COMP%]{\n    grid-area: fileNumber;\n}\n\n[_nghost-%COMP%]   .projectName[_ngcontent-%COMP%] {\n    grid-area: projectName;\n}\n\n[_nghost-%COMP%]   .date[_ngcontent-%COMP%] {\n    grid-area: date;\n}\n\n[_nghost-%COMP%]   .bulder[_ngcontent-%COMP%] {\n    grid-area: builder;\n}\n\n[_nghost-%COMP%]   .empty5[_ngcontent-%COMP%] {\n    grid-area: empty5;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZG9jeC1mb3JtL2RvY3gtZm9ybS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksYUFBYTtJQUNiLGdDQUFnQztJQUNoQyx3QkFBd0I7SUFDeEI7Ozs7Ozs7Ozs0QkFTd0I7QUFDNUI7O0FBRUE7SUFDSSx1QkFBdUI7QUFDM0I7O0FBRUE7SUFDSSwwQkFBMEI7QUFDOUI7O0FBRUE7SUFDSSx3QkFBd0I7QUFDNUI7O0FBQ0E7SUFDSSw2QkFBNkI7QUFDakM7O0FBRUE7SUFDSSxtQkFBbUI7QUFDdkI7O0FBQ0E7SUFDSSx5QkFBeUI7QUFDN0I7O0FBRUE7SUFDSSwyQkFBMkI7QUFDL0I7O0FBRUE7SUFDSSw2QkFBNkI7QUFDakM7O0FBRUE7SUFDSSw4QkFBOEI7QUFDbEM7O0FBQ0E7SUFDSSxxQkFBcUI7QUFDekI7O0FBRUE7SUFDSSxzQkFBc0I7QUFDMUI7O0FBRUE7SUFDSSxlQUFlO0FBQ25COztBQUVBO0lBQ0ksa0JBQWtCO0FBQ3RCOztBQUVBO0lBQ0ksaUJBQWlCO0FBQ3JCIiwiZmlsZSI6InNyYy9hcHAvZG9jeC1mb3JtL2RvY3gtZm9ybS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3QgLmRvY3hGb3JtTGF5b3V0e1xuICAgIGRpc3BsYXk6IGdyaWQ7XG4gICAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiBhdXRvIGF1dG87XG4gICAgZ3JpZC10ZW1wbGF0ZS1yb3dzOiBhdXRvO1xuICAgIGdyaWQtdGVtcGxhdGUtYXJlYXM6IFxuICAgIFwiZmllbGRSZXZpZXdSZXBvcnRzIGVtcHR5MVwiXG4gICAgXCJjb21tb25FbGVtZW50TnVtYmVyIGVtcHR5MlwiXG4gICAgXCJmaWxlTnVtYmVyIHByb2plY3ROYW1lXCJcbiAgICBcImRhdGUgYnVpbGRlclwiXG4gICAgXCJwcm9qZWN0QWRkcmVzcyB3ZWF0aGVyQ29uZGl0aW9uXCJcbiAgICBcImxvY2F0aW9uIGluc3BlY3Rpb25DYXRlZ29yeVwiXG4gICAgXCJyZWZlcmVuY2VEd2dzIGVtcHR5M1wiXG4gICAgXCJkYXRlc1Zpc2l0ZWQgZW1wdHk0XCJcbiAgICBcImluc3BlY3Rpb25Ob3RlcyBlbXB0eTVcIjtcbn1cblxuOmhvc3QgLmRhdGVzVmlzaXRlZCB7XG4gICAgZ3JpZC1hcmVhOiBkYXRlc1Zpc2l0ZWQ7XG59XG5cbjpob3N0IC5pbnNwZWN0aW9uTm90ZXMge1xuICAgIGdyaWQtYXJlYTogaW5zcGVjdGlvbk5vdGVzO1xufVxuXG46aG9zdCAucmVmZXJlbmNlRHdncyB7XG4gICAgZ3JpZC1hcmVhOiByZWZlcmVuY2VEd2dzO1xufVxuOmhvc3QgLmluc3BlY3Rpb25DYXRlZ29yeSB7XG4gICAgZ3JpZC1hcmVhOiBpbnNwZWN0aW9uQ2F0ZWdvcnk7XG59XG5cbjpob3N0IC5sb2NhdGlvbiB7XG4gICAgZ3JpZC1hcmVhOiBsb2NhdGlvbjtcbn1cbjpob3N0IC5wcm9qZWN0QWRkcmVzcyB7XG4gICAgZ3JpZC1hcmVhOiBwcm9qZWN0QWRkcmVzcztcbn1cblxuOmhvc3QgLndlYXRoZXJDb25kaXRpb24ge1xuICAgIGdyaWQtYXJlYTogd2VhdGhlckNvbmRpdGlvbjtcbn1cblxuOmhvc3QgLmZpZWxkUmV2aWV3UmVwb3J0cyB7XG4gICAgZ3JpZC1hcmVhOiBmaWVsZFJldmlld1JlcG9ydHM7XG59XG5cbjpob3N0IC5jb21tb25FbGVtZW50TnVtYmVyIHtcbiAgICBncmlkLWFyZWE6IGNvbW1vbkVsZW1lbnROdW1iZXI7XG59XG46aG9zdCAuZmlsZU51bWJlcntcbiAgICBncmlkLWFyZWE6IGZpbGVOdW1iZXI7XG59XG5cbjpob3N0IC5wcm9qZWN0TmFtZSB7XG4gICAgZ3JpZC1hcmVhOiBwcm9qZWN0TmFtZTtcbn1cblxuOmhvc3QgLmRhdGUge1xuICAgIGdyaWQtYXJlYTogZGF0ZTtcbn1cblxuOmhvc3QgLmJ1bGRlciB7XG4gICAgZ3JpZC1hcmVhOiBidWlsZGVyO1xufVxuXG46aG9zdCAuZW1wdHk1IHtcbiAgICBncmlkLWFyZWE6IGVtcHR5NTtcbn0iXX0= */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](DocxFormComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
@@ -350,7 +366,7 @@ DocxFormComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
                 templateUrl: './docx-form.component.html',
                 styleUrls: ['./docx-form.component.css']
             }]
-    }], function () { return [{ type: _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"] }]; }, null); })();
+    }], function () { return [{ type: _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"] }, { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }]; }, null); })();
 
 
 /***/ }),

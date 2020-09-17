@@ -26,6 +26,7 @@ dependencies {
 
 	implementation 'org.docx4j:docx4j-JAXB-ReferenceImpl:11.1.8'
 
+	implementation group: 'commons-io', name: 'commons-io', version: '2.8.0'
 	// // https://mvnrepository.com/artifact/xerces/xercesImpl
 	// compileOnly group: 'xerces', name: 'xercesImpl', version: '2.6.2-jaxb-1.0.6'
 

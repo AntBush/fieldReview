@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, FormArray, Validators} from "@angular/forms";
+import { HttpClient } from "@angular/common/http";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: 'app-docx-form',
@@ -7,11 +9,11 @@ import { FormControl, FormGroup, FormBuilder, FormArray, Validators} from "@angu
   styleUrls: ['./docx-form.component.css']
 })
 export class DocxFormComponent implements OnInit {
-    constructor(private fb: FormBuilder) { }
+    constructor(private fb: FormBuilder, private http: HttpClient) { }
     docxForm = this.fb.group({
-        fieldReviewReports:[''],
-        commonElementNo:[''],
-        fileNo: [''],
+        reportNumber:[''],
+        commonElementNumber:[''],
+        fileNumber: [''],
         date: [''],
         projectAddress:[''],
         location:[''],
@@ -32,9 +34,24 @@ export class DocxFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  sendHttpRequest(){
+   this.http.post("/docBuild",this.docxForm.value,{responseType: 'arraybuffer'}).subscribe(response => {
+    this.downLoadFile(response, "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+   })  
+  }
+
   logIt(){
-      console.log(this.datesVisited.value);
+    //   console.log(this.datesVisited.value);
       console.log(this.docxForm.value);
+  }
+
+  private downLoadFile(data: any, type: string){
+    let blob = new Blob([data], { type: type});
+    let url = window.URL.createObjectURL(blob);
+    let pwa = window.open(url);
+    if (!pwa || pwa.closed || typeof pwa.closed == 'undefined') {
+        alert( 'Please disable your Pop-up blocker and try again.');
+    }
   }
 
   get datesVisited() {

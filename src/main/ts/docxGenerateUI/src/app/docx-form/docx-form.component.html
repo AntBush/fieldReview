@@ -2,68 +2,68 @@
     <form [formGroup]='docxForm' class="docxFormLayout">
         <div class="fieldReviewReports">
         <label>
-            File Review Reports:
-            <input type="text" id="fieldReviewReports" formControlName="fieldReviewReports">
+            Field Review Report Number:
+            <input type="text" id="fieldReviewReports" formControlName="reportNumber" tabindex="1">
         </label>
     </div>
-    <div class="commonElementNo">
+    <div class="commonElementNumber">
         <label>
             Common Element Number:
-            <input type="text" id="commonElementNo" formControlName="commonElementNo">
+            <input type="text" id="commonElementNumber" formControlName="commonElementNumber" tabindex="3">
         </label>
     </div>
-    <div class="fileNo">
+    <div class="fileNumber">
         <label>
             File No.:
-            <input type="text" id="fileNumber" formControlName="fileNo">
+            <input type="text" id="fileNumber" formControlName="fileNumber" tabindex="4">
         </label>
     </div>
     <div class="date">    
         <label>
             Date of Document: 
-            <input type="date" id="dateGeneration" formControlName="date">
+            <input type="date" id="dateGeneration" formControlName="date" tabindex="6">
         </label>
     </div>
     <div class="projectAddress">
         <label>
             Project Address:
-            <input type="text" id="projectAddress" formControlName="projectAddress" >
+            <input type="text" id="projectAddress" formControlName="projectAddress" tabindex="7">
         </label>
     </div>
     <div class="location">
         <label>
             Location:
-            <input type="text" id="location" formControlName="location">
+            <input type="text" id="location" formControlName="location" tabindex="9">
         </label>
     </div>
     <div class="referenceDwgs">
         <label>
             Reference Dwgs:
-            <input type="text" id="referenceDwgs" formControlName="referenceDwgs">
+            <input type="text" id="referenceDwgs" formControlName="referenceDwgs" tabindex="11">
         </label>
     </div>
     <div class="projectName">
         <label>
             Project Name: 
-            <input type="text" id="projectName" formControlName="projectName">
+            <input type="text" id="projectName" formControlName="projectName" tabindex="5"> 
         </label>
     </div>
     <div class="builder">
         <label>
             Builder: 
-            <input type="text" id="builder" formControlName="builder" >
+            <input type="text" id="builder" formControlName="builder" tabindex="2">
         </label>
     </div>
     <div class="weatherCondition">
         <label>
             Weather Condition: 
-            <input type="text" id="weatherCondition" formControlName="weatherCondition" >
+            <input type="text" id="weatherCondition" formControlName="weatherCondition" tabindex="8">
         </label>
     </div>
     <div class="inspectionCategory">
         <label>
             Inspection Category: 
-            <input type="text" id="inspectionCategory" formControlName="inspectionCategory">
+            <input type="text" id="inspectionCategory" formControlName="inspectionCategory" tabindex="10">
         </label>
     </div>
     <div formArrayName="datesVisited" class="datesVisited">
@@ -85,7 +85,7 @@
         </div>
         <button (click)="addInspectionNotes()">Add Inspection Note</button>
     </div>
-    <button (click)="logIt()"  class="empty5">SubmitIGuess</button>
+    <button (click)="sendHttpRequest()"  class="empty5">SubmitIGuess</button>
     </form>
 <p>
     <!-- Value: {{fileNumber.value}} -->

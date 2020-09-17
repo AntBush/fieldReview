@@ -1725,7 +1725,7 @@ public class BodyWithTableBuilder {
         color55.setThemeColor(org.docx4j.wml.STThemeColor.ACCENT_1);
         color55.setThemeShade("BF");
         // Create object for p
-        addNumberedList(reviewData.getNumberedList(), tc4);
+        addNumberedList(reviewData.getInspectionNotes(), tc4);
         // Create object for p
         P p46 = wmlObjectFactory.createP();
         tc4.getContent().add(p46);

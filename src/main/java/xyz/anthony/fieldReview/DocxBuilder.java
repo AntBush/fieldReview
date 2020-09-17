@@ -42,6 +42,52 @@ public class DocxBuilder  {
         this.reviewData = reviewdData;
     }
 
+	public File buildDoc(String docName){
+		
+		File exportFile = new File(docName);
+		
+		try{
+			logger.info("Creating Word package");
+			wordMLPackage = WordprocessingMLPackage.createPackage();
+			logger.info("Error here?");
+            HeaderPart hdrPart = new HeaderPart();
+            FooterPart ftrPart = new FooterPart();
+            MainDocumentPart mdp = wordMLPackage.getMainDocumentPart();
+            reviewData.addToNumberedList("listItem");
+            reviewData.addToNumberedList("ListItem 2");
+            mdp.setContents(BodyWithTableBuilder.createIt(reviewData));
+			DocDefaults docDefault = objectFactory.createDocDefaults();
+			PPrDefault pprDefault = objectFactory.createDocDefaultsPPrDefault();
+			PPr ppr = objectFactory.createPPr();
+			PPrBase.Spacing pprBaseSpacing = objectFactory.createPPrBaseSpacing();
+			pprBaseSpacing.setAfter(BigInteger.valueOf(0));
+			ppr.setSpacing(pprBaseSpacing);
+			pprDefault.setPPr(ppr);
+			docDefault.setPPrDefault(pprDefault);
+			
+			List<SectionWrapper> sections = wordMLPackage.getDocumentModel().getSections();
+            hdrPart.setContents(HeaderBuilder.createIt());
+            ftrPart.setContents(FooterBuilder.createIt());
+            Relationship ftrRel = mdp.addTargetPart(ftrPart);
+			Relationship hdrRel = mdp.addTargetPart(hdrPart);
+			for(SectionWrapper section : sections){
+				logger.info("Section is: " + section.getSectPr().toString());
+			}
+            createHeaderReference(wordMLPackage, hdrRel);
+            createFooterReference(wordMLPackage, ftrRel);
+			mdp.getStyleDefinitionsPart().getContents().setDocDefaults(docDefault);
+			wordMLPackage.save(exportFile);
+			
+		}catch (Exception e){
+			logger.error(e.getMessage());
+			
+		}
+
+		return exportFile;
+		
+	}
+	
+
 	public void buildDoc(){
 		try{
 			logger.info("Creating Word package");

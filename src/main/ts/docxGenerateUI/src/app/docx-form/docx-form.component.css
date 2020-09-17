@@ -4,8 +4,8 @@
     grid-template-rows: auto;
     grid-template-areas: 
     "fieldReviewReports empty1"
-    "commonElementNo empty2"
-    "fileNo projectName"
+    "commonElementNumber empty2"
+    "fileNumber projectName"
     "date builder"
     "projectAddress weatherCondition"
     "location inspectionCategory"
@@ -44,11 +44,11 @@
     grid-area: fieldReviewReports;
 }
 
-:host .commonElementNo {
-    grid-area: commonElementNo;
+:host .commonElementNumber {
+    grid-area: commonElementNumber;
 }
-:host .fileNo{
-    grid-area: fileNo;
+:host .fileNumber{
+    grid-area: fileNumber;
 }
 
 :host .projectName {

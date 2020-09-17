@@ -7,8 +7,8 @@ import lombok.Data;
 
 @Data
 public class FieldReviewData {
-    private List<String> dateList = new ArrayList<String>();
-    private List<String> numberedList = new ArrayList<String>();
+    private List<String> datesVisited = new ArrayList<String>();
+    private List<String> inspectionNotes = new ArrayList<String>();
 
     private String fileNumber;
     private String date;
@@ -23,10 +23,10 @@ public class FieldReviewData {
     private String projectAddress;
 
     public void addToNumberedList(String listItem){
-        numberedList.add(listItem);
+        inspectionNotes.add(listItem);
     }
 
     public void addToDateList(String dateItem){
-        dateList.add(dateItem);
+        datesVisited.add(dateItem);
     }
 }
