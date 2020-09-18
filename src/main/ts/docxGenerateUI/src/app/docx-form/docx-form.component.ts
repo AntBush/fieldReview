@@ -10,6 +10,8 @@ import { map } from "rxjs/operators";
 })
 export class DocxFormComponent implements OnInit {
     constructor(private fb: FormBuilder, private http: HttpClient) { }
+    formData = new FormData;
+    filesToUpload: FileList;
     docxForm = this.fb.group({
         reportNumber:[''],
         commonElementNumber:[''],
@@ -28,7 +30,6 @@ export class DocxFormComponent implements OnInit {
         inspectionNotes: this.fb.array([
             this.fb.control('')
         ]),
-        // files: [''],
     });
    
 
@@ -36,10 +37,25 @@ export class DocxFormComponent implements OnInit {
   }
 
   sendHttpRequest(){
-   this.http.post("/docBuild",this.docxForm.value,{responseType: 'arraybuffer'}).subscribe(response => {
+    for (const key in this.docxForm.value) {
+        if (Object.prototype.hasOwnProperty.call(this.docxForm.value, key)) {
+                    const element = this.docxForm.get(key).value;
+                    console.log(key);
+                    console.log(element);
+                    this.formData.append(key,element);
+        }
+    }
+    for(let i = 0; i < this.filesToUpload.length; i++){
+        this.formData.append("files",this.filesToUpload[i]);
+    }
+    console.log(this.formData.get("files"));
+    this.http.post("/docBuild",this.formData,{responseType: 'arraybuffer'}).subscribe(response => {
     this.downLoadFile(response, "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
    })  
   }
+  handleFileInput(files: FileList) {
+    this.filesToUpload = files;
+}
 
   logIt(){
     //   console.log(this.datesVisited.value);

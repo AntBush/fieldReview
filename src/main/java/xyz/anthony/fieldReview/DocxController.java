@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 
 
 @RestController
@@ -21,7 +22,7 @@ public class DocxController {
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @PostMapping(value="/docBuild", produces = "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
-    public byte[] createFile(@RequestBody FieldReviewData reviewData){//}, @RequestParam("files") MultipartFile []files) {
+    public byte[] createFile(@RequestBody FieldReviewData reviewData, @RequestPart("files") MultipartFile []files) {
         //TODO: process POST request
         DocxBuilder docBuilder = new DocxBuilder(reviewData);
 
