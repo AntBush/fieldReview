@@ -3,6 +3,8 @@ package xyz.anthony.fieldReview;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -21,6 +23,7 @@ public class FieldReviewData {
     private String reportNumber;
     private String commonElementNumber;
     private String projectAddress;
+    private MultipartFile files[];
 
     public void addToNumberedList(String listItem){
         inspectionNotes.add(listItem);

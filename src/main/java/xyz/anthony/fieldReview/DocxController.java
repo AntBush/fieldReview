@@ -22,7 +22,7 @@ public class DocxController {
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @PostMapping(value="/docBuild", produces = "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
-    public byte[] createFile(@RequestBody FieldReviewData reviewData, @RequestPart("files") MultipartFile []files) {
+    public byte[] createFile(@RequestParam FieldReviewData reviewData) {
         //TODO: process POST request
         DocxBuilder docBuilder = new DocxBuilder(reviewData);
 
