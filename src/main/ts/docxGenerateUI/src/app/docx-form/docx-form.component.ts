@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, FormArray, Validators} from "@angular/forms";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { map } from "rxjs/operators";
 
 @Component({
@@ -43,14 +43,18 @@ export class DocxFormComponent implements OnInit {
                     console.log(key);
                     console.log(element);
                     this.formData.append(key,element);
+                    // newObject[key] = element;
         }
     }
+    let httpHeader = new HttpHeaders({"Content-Type" : "multipart/form-data"});
+    // httpHeader.set()
     for(let i = 0; i < this.filesToUpload.length; i++){
         this.formData.append("files",this.filesToUpload[i]);
     }
-    console.log(this.formData.get("files"));
+    
     this.http.post("/docBuild",this.formData,{responseType: 'arraybuffer'}).subscribe(response => {
-    this.downLoadFile(response, "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+    this.downLoadFile(response, "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+    this.formData = new FormData();
    })  
   }
   handleFileInput(files: FileList) {

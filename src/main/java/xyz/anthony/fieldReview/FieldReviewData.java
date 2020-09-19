@@ -23,7 +23,7 @@ public class FieldReviewData {
     private String reportNumber;
     private String commonElementNumber;
     private String projectAddress;
-    private MultipartFile files[];
+    // private MultipartFile files[];
 
     public void addToNumberedList(String listItem){
         inspectionNotes.add(listItem);

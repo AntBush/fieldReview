@@ -2,23 +2,30 @@ package xyz.anthony.fieldReview;
 
 import java.io.File;
 import java.math.BigInteger;
+import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import org.docx4j.dml.wordprocessingDrawing.Inline;
 import org.docx4j.model.structure.SectionWrapper;
 import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
+import org.docx4j.openpackaging.parts.WordprocessingML.BinaryPartAbstractImage;
 import org.docx4j.openpackaging.parts.WordprocessingML.FooterPart;
 import org.docx4j.openpackaging.parts.WordprocessingML.HeaderPart;
 import org.docx4j.openpackaging.parts.WordprocessingML.MainDocumentPart;
 import org.docx4j.openpackaging.parts.WordprocessingML.StyleDefinitionsPart;
 import org.docx4j.relationships.Relationship;
 import org.docx4j.wml.DocDefaults;
+import org.docx4j.wml.Drawing;
 import org.docx4j.wml.FooterReference;
 import org.docx4j.wml.HdrFtrRef;
 import org.docx4j.wml.HeaderReference;
 import org.docx4j.wml.ObjectFactory;
+import org.docx4j.wml.P;
 import org.docx4j.wml.PPr;
 import org.docx4j.wml.PPrBase;
+import org.docx4j.wml.R;
 import org.docx4j.wml.SectPr;
 import org.docx4j.wml.DocDefaults.PPrDefault;
 import org.slf4j.Logger;
@@ -42,7 +49,7 @@ public class DocxBuilder  {
         this.reviewData = reviewdData;
     }
 
-	public File buildDoc(String docName){
+	public File buildDoc(String docName, List<File> images){
 		
 		File exportFile = new File(docName);
 		
@@ -73,7 +80,9 @@ public class DocxBuilder  {
 			}
             createHeaderReference(wordMLPackage, hdrRel);
             createFooterReference(wordMLPackage, ftrRel);
-			mdp.getStyleDefinitionsPart().getContents().setDocDefaults(docDefault);
+            addFiles(images, wordMLPackage,mdp);
+            mdp.getStyleDefinitionsPart().getContents().setDocDefaults(docDefault);
+            
 			wordMLPackage.save(exportFile);
 			
 		}catch (Exception e){
@@ -84,7 +93,32 @@ public class DocxBuilder  {
 		return exportFile;
 		
 	}
-	
+    
+    private static P addImageToParagraph(Inline inline) {
+	    ObjectFactory factory = new ObjectFactory();
+	    P p = factory.createP();
+	    R r = factory.createR();
+	    p.getContent().add(r);
+	    Drawing drawing = factory.createDrawing();
+	    r.getContent().add(drawing);
+	    drawing.getAnchorOrInline().add(inline);
+	    return p;
+	}
+
+    private void addFiles(List<File> fileList, WordprocessingMLPackage wordPackage, MainDocumentPart mainDocumentPart){
+        for(File file : fileList){
+            try{
+
+                byte[] fileContent = Files.readAllBytes(file.toPath());
+                BinaryPartAbstractImage imagePart = BinaryPartAbstractImage.createImagePart(wordPackage, fileContent);
+                Inline inline = imagePart.createImageInline("Baeldung Image (filename hint)", "Alt Text", 1, 2, false);
+                P Imageparagraph = addImageToParagraph(inline);
+                mainDocumentPart.getContent().add(Imageparagraph);
+            }catch(Exception e){
+                logger.error(e.getMessage(),e.fillInStackTrace());
+            }
+        }
+    }
 
 	public void buildDoc(){
 		try{

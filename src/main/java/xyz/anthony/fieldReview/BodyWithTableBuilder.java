@@ -3588,28 +3588,39 @@ public class BodyWithTableBuilder {
         SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy'-'MM'-'dd");
         SimpleDateFormat dateToString = new SimpleDateFormat("MMM d");
         SimpleDateFormat dateToStringWithYear = new SimpleDateFormat("MMM d, yyyy");
-
-
-        for (String stringDate : dateList.subList(0, dateList.size()-1)){
+        if(dateList.size() < 1){
+            return "";
+        }else if(dateList.size() == 1){
             try{
-                Date date = dateFormatter.parse(stringDate);
-                FormatedDates += dateToString.format(date) + ", ";
-
+                Date date = dateFormatter.parse(dateList.get(0));
+                return dateToStringWithYear.format(date);
             }catch(ParseException e){
                 
             }
         }
-        try{
-            Date date = dateFormatter.parse(dateList.get(dateList.size()-1));
-            FormatedDates += "and " + dateToStringWithYear.format(date) + " ";
-        }catch(ParseException e ){
+        else{
+            
+            for (String stringDate : dateList.subList(0, dateList.size()-1)){
+                try{
+                Date date = dateFormatter.parse(stringDate);
+                FormatedDates += dateToString.format(date) + ", ";
+
+                }catch(ParseException e){
+
+                }
+            }
+            try{
+                Date date = dateFormatter.parse(dateList.get(dateList.size()-1));
+                FormatedDates += "and " + dateToStringWithYear.format(date) + " ";
+            }catch(ParseException e ){
+
+            }
 
         }
-
         return FormatedDates;
     }
-
-
+    
+    
     /**
      * Private method to help add blue-coloured text to a P
      * @param baseP - The P object you'd like to add text to
