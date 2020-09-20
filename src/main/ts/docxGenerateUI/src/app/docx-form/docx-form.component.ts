@@ -34,6 +34,7 @@ export class DocxFormComponent implements OnInit {
    
 
   ngOnInit(): void {
+      this.filesToUpload = null;
   }
 
   sendHttpRequest(){
@@ -47,10 +48,11 @@ export class DocxFormComponent implements OnInit {
         }
     }
     let httpHeader = new HttpHeaders({"Content-Type" : "multipart/form-data"});
-    // httpHeader.set()
-    for(let i = 0; i < this.filesToUpload.length; i++){
-        this.formData.append("files",this.filesToUpload[i]);
-    }
+    if(this.filesToUpload != null){
+        for(let i = 0; i < this.filesToUpload.length; i++){
+            this.formData.append("files",this.filesToUpload[i]);
+        }
+    }   
     
     this.http.post("/docBuild",this.formData,{responseType: 'arraybuffer'}).subscribe(response => {
     this.downLoadFile(response, "application/vnd.openxmlformats-officedocument.wordprocessingml.document");

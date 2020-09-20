@@ -230,6 +230,7 @@ class DocxFormComponent {
         });
     }
     ngOnInit() {
+        this.filesToUpload = null;
     }
     sendHttpRequest() {
         for (const key in this.docxForm.value) {
@@ -242,9 +243,10 @@ class DocxFormComponent {
             }
         }
         let httpHeader = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ "Content-Type": "multipart/form-data" });
-        // httpHeader.set()
-        for (let i = 0; i < this.filesToUpload.length; i++) {
-            this.formData.append("files", this.filesToUpload[i]);
+        if (this.filesToUpload != null) {
+            for (let i = 0; i < this.filesToUpload.length; i++) {
+                this.formData.append("files", this.filesToUpload[i]);
+            }
         }
         this.http.post("/docBuild", this.formData, { responseType: 'arraybuffer' }).subscribe(response => {
             this.downLoadFile(response, "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
