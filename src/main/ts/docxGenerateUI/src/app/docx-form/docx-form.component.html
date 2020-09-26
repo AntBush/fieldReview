@@ -80,7 +80,7 @@
         <div *ngFor="let inspectionNote of inspectionNotes.controls; let i=index">
             <label>
                 Inspection Notes: 
-                <input type="text" [formControlName]="i">
+                <textarea [formControlName]="i"></textarea>
             </label>
         </div>
         <button (click)="addInspectionNotes()">Add Inspection Note</button>

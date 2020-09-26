@@ -18,6 +18,10 @@ repositories {
 	mavenCentral()
 }
 
+bootJar {
+	launchScript()
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation ('org.docx4j:docx4j-core:11.1.8'){
