@@ -13,6 +13,7 @@
     "datesVisited empty4"
     "inspectionNotes empty5"
     "fileUploads empty6";
+    padding-left: 10px;
 }
 
 :host .datesVisited {
@@ -21,7 +22,12 @@
 
 :host .inspectionNotes {
     grid-area: inspectionNotes;
+    /* display: block; */
 }
+
+/* :host .inspectionNotes > *{
+    display:block;
+} */
 
 :host .referenceDwgs {
     grid-area: referenceDwgs;

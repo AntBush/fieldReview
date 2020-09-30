@@ -3,67 +3,67 @@
     <div class="fieldReviewReports">
         <label>
             Field Review Report Number:
-            <input type="text" id="fieldReviewReports" formControlName="reportNumber" tabindex="1">
+            <input matInput type="text" id="fieldReviewReports" formControlName="reportNumber" tabindex="1">
         </label>
     </div>
     <div class="commonElementNumber">
         <label>
             Common Element Number:
-            <input type="text" id="commonElementNumber" formControlName="commonElementNumber" tabindex="3">
+            <input matInput type="text" id="commonElementNumber" formControlName="commonElementNumber" tabindex="3">
         </label>
     </div>
     <div class="fileNumber">
         <label>
             File No.:
-            <input type="text" id="fileNumber" formControlName="fileNumber" tabindex="4">
+            <input matInput type="text" id="fileNumber" formControlName="fileNumber" tabindex="4">
         </label>
     </div>
     <div class="date">    
         <label>
             Date of Document: 
-            <input type="date" id="dateGeneration" formControlName="date" tabindex="6">
+            <input matInput type="date" id="dateGeneration" formControlName="date" tabindex="6">
         </label>
     </div>
     <div class="projectAddress">
         <label>
             Project Address:
-            <input type="text" id="projectAddress" formControlName="projectAddress" tabindex="7">
+            <input matInput type="text" id="projectAddress" formControlName="projectAddress" tabindex="7">
         </label>
     </div>
     <div class="location">
         <label>
             Location:
-            <input type="text" id="location" formControlName="location" tabindex="9">
+            <input matInput type="text" id="location" formControlName="location" tabindex="9">
         </label>
     </div>
     <div class="referenceDwgs">
         <label>
             Reference Dwgs:
-            <input type="text" id="referenceDwgs" formControlName="referenceDwgs" tabindex="11">
+            <input matInput type="text" id="referenceDwgs" formControlName="referenceDwgs" tabindex="11">
         </label>
     </div>
     <div class="projectName">
         <label>
             Project Name: 
-            <input type="text" id="projectName" formControlName="projectName" tabindex="5"> 
+            <input matInput type="text" id="projectName" formControlName="projectName" tabindex="5"> 
         </label>
     </div>
     <div class="builder">
         <label>
             Builder: 
-            <input type="text" id="builder" formControlName="builder" tabindex="2">
+            <input matInput type="text" id="builder" formControlName="builder" tabindex="2">
         </label>
     </div>
     <div class="weatherCondition">
         <label>
             Weather Condition: 
-            <input type="text" id="weatherCondition" formControlName="weatherCondition" tabindex="8">
+            <input matInput type="text" id="weatherCondition" formControlName="weatherCondition" tabindex="8">
         </label>
     </div>
     <div class="inspectionCategory">
         <label>
             Inspection Category: 
-            <input type="text" id="inspectionCategory" formControlName="inspectionCategory" tabindex="10">
+            <input matInput type="text" id="inspectionCategory" formControlName="inspectionCategory" tabindex="10">
         </label>
     </div>
     <div formArrayName="datesVisited" class="datesVisited">
@@ -71,19 +71,19 @@
         <div *ngFor="let date of datesVisited.controls; let i = index">
             <label>
                 Date Visited: 
-                <input type="date" [formControlName]="i">
+                <input matInput type="date" [formControlName]="i">
             </label>
         </div>
-        <button (click)="addDateVisited()">Add Date Visited</button>
+        <button mat-raised-button (click)="addDateVisited()">Add Date Visited</button>
     </div>
     <div formArrayName="inspectionNotes" class="inspectionNotes">
-        <div *ngFor="let inspectionNote of inspectionNotes.controls; let i=index">
-            <label>
+        <mat-form-field appearance="fill" *ngFor="let inspectionNote of inspectionNotes.controls; let i=index">
+            <mat-label>
                 Inspection Notes: 
-                <textarea [formControlName]="i"></textarea>
-            </label>
-        </div>
-        <button (click)="addInspectionNotes()">Add Inspection Note</button>
+            </mat-label>
+                <textarea matInput placeholder="South-East windows installed at the grade level." [formControlName]="i"></textarea>
+        </mat-form-field>
+        <button mat-raised-button (click)="addInspectionNotes()">Add Inspection Note</button>
     </div>
     <div class="fileUploads">
         <label>
@@ -91,7 +91,7 @@
             <input type="file" id="files" name="files" (change)="handleFileInput($event.target.files)" accept="image/x-png,image/gif,image/jpeg" multiple>
         </label>
     </div>
-    <button (click)="sendHttpRequest()"  class="empty5">Submit</button>
+    <button mat-raised-button color="primary" (click)="sendHttpRequest()"  class="empty5">Submit</button>
     </form>
 <p>
     <!-- Value: {{fileNumber.value}} -->
