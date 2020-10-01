@@ -13,7 +13,15 @@
     "datesVisited empty4"
     "inspectionNotes empty5"
     "fileUploads empty6";
-    padding-left: 10px;
+    gap: 10px;
+    padding: 10px;
+}
+
+:host mat-form-field {
+    width:100%;
+}
+:host button {
+    
 }
 
 :host .datesVisited {
@@ -22,16 +30,12 @@
 
 :host .inspectionNotes {
     grid-area: inspectionNotes;
-    /* display: block; */
 }
 
-/* :host .inspectionNotes > *{
-    display:block;
-} */
-
-:host .referenceDwgs {
+:host .referenceDwgs  {
     grid-area: referenceDwgs;
 }
+
 :host .inspectionCategory {
     grid-area: inspectionCategory;
 }
@@ -71,9 +75,19 @@
 }
 
 :host .empty5 {
-    grid-area: empty5;
+    grid-area: empty3;
+    width: 100px;
+    margin-left: 3em;    
 }
 
 :host .fileUploads {
     grid-area: fileUploads;
+}
+
+:host .notes{
+    display: block;
+}
+
+:host .dates {
+    display: block;
 }
