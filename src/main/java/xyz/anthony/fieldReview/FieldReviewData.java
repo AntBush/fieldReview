@@ -7,10 +7,21 @@ import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 @Data
+@Entity
 public class FieldReviewData {
+    
     private List<String> datesVisited = new ArrayList<String>();
     private List<String> inspectionNotes = new ArrayList<String>();
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Integer id;
 
     private String fileNumber;
     private String date;

@@ -18,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.GetMapping;
+
 
 
 @RestController
@@ -38,7 +40,7 @@ public class DocxController {
             
             byteArray = IOUtils.toByteArray(in);
         }catch(FileNotFoundException e){
-            logger.error(e.getMessage(), e.getCause());   
+            logger.error(e.getMessage(), e.getCause());
         }catch(IOException e){
             logger.error(e.getMessage());
             logger.error(e.getMessage(), e.getCause());
@@ -71,5 +73,11 @@ public class DocxController {
 
         return fileList;
     }
+
+    @GetMapping("/profiles")
+    public List<Object> getMethodName(@RequestParam String param) {
+        return null;
+    }
+    
 
 }
