@@ -10,21 +10,24 @@ import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
 
 @RestController
 public class DocxController {
+    @Autowired
+    private FieldReviewDataRepository fieldReviewDataRepository;
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
+
 
     @PostMapping(value="/docBuild", produces = "application/vnd.openxmlformats-officedocument.wordprocessingml.document", consumes = "multipart/form-data")
     public byte[] createFile(@ModelAttribute FieldReviewData reviewData, @RequestPart("files") MultipartFile []files) {
@@ -34,7 +37,9 @@ public class DocxController {
         logger.info("Review Data: " + reviewData);
         File docFile = docBuilder.buildDoc(reviewData.getFileNumber() + ".docx", converMultiPartFiletoFile(files));
 
-    
+        if(!fieldReviewDataRepository.existsByProjectAddress(reviewData.getProjectAddress())){    
+            fieldReviewDataRepository.save(reviewData);
+        }
         byte[] byteArray = null;
         try(InputStream in = new FileInputStream(docFile)){
             
@@ -75,8 +80,8 @@ public class DocxController {
     }
 
     @GetMapping("/profiles")
-    public List<Object> getMethodName(@RequestParam String param) {
-        return null;
+    public Iterable<FieldReviewData> getMethodName() {
+        return fieldReviewDataRepository.findAll();
     }
     
 

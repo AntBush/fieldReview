@@ -8,8 +8,12 @@ import { map } from "rxjs/operators";
   templateUrl: './docx-form.component.html',
   styleUrls: ['./docx-form.component.css']
 })
+
 export class DocxFormComponent implements OnInit {
-    constructor(private fb: FormBuilder, private http: HttpClient) { }
+    constructor(private fb: FormBuilder, private http: HttpClient) {
+        
+     }
+    templates;
     formData = new FormData;
     filesToUpload: FileList;
     docxForm = this.fb.group({
@@ -35,6 +39,9 @@ export class DocxFormComponent implements OnInit {
 
   ngOnInit(): void {
       this.filesToUpload = null;
+      this.http.get("/profiles").subscribe(data => {
+          this.templates = data;
+      });
   }
 
   sendHttpRequest(){
@@ -61,6 +68,22 @@ export class DocxFormComponent implements OnInit {
   }
   handleFileInput(files: FileList) {
     this.filesToUpload = files;
+}
+
+templateSetter(index){
+    if(index == -1){
+        return;
+    }
+
+    let templateChosen = this.templates[index];
+
+    this.docxForm.get("reportNumber").setValue(templateChosen.reportNumber);
+    this.docxForm.get("commonElementNumber").setValue(templateChosen.reportNumber);
+    this.docxForm.get("fileNumber").setValue(templateChosen.fileNumber);
+    this.docxForm.get("projectAddress").setValue(templateChosen.projectAddress);
+    this.docxForm.get("location").setValue(templateChosen.location);
+    this.docxForm.get("projectName").setValue(templateChosen.projectName);
+    this.docxForm.get("builder").setValue(templateChosen.builder);
 }
 
   logIt(){

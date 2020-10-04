@@ -1,5 +1,13 @@
 <div>
     <form [formGroup]='docxForm' class="docxFormLayout">
+    <mat-form-field appearance="fill">
+        <mat-label>Template</mat-label>
+        <select matNativeControl (change)="templateSetter($event.target.value)" tabindex="100">
+            <option selected value="-1">None</option>
+            <option *ngFor="let template of templates; let i = index" value="{{i}}">{{template.projectAddress}}</option>
+            
+        </select>
+    </mat-form-field>
     <div class="fieldReviewReports">
         <mat-form-field appearance="fill">
             <mat-label>

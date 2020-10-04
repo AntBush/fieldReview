@@ -1,23 +1,25 @@
 package xyz.anthony.fieldReview;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
 
 @Data
 @Entity
 public class FieldReviewData {
     
-    private List<String> datesVisited = new ArrayList<String>();
-    private List<String> inspectionNotes = new ArrayList<String>();
+    @Transient
+    private ArrayList<String> datesVisited = new ArrayList<String>();
+    @Transient
+    private ArrayList<String> inspectionNotes = new ArrayList<String>();
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -33,6 +35,7 @@ public class FieldReviewData {
     private String inspectionCategory;
     private String reportNumber;
     private String commonElementNumber;
+    @Column(unique = true)
     private String projectAddress;
     // private MultipartFile files[];
 

@@ -3,7 +3,7 @@
     grid-template-columns: auto auto;
     grid-template-rows: auto;
     grid-template-areas: 
-    "fieldReviewReports empty1"
+    "fieldReviewReports profileSelect"
     "commonElementNumber empty2"
     "fileNumber projectName"
     "date builder"
@@ -20,8 +20,8 @@
 :host mat-form-field {
     width:100%;
 }
-:host button {
-    
+:host .profileSelect {
+    grid-area: profileSelect;
 }
 
 :host .datesVisited {
